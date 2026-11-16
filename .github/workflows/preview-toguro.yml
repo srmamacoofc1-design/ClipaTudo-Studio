@@ -1,0 +1,61 @@
+name: Teste isolado de previa do Toguro
+on:
+  push:
+    branches:
+      - experimentos/preview-toguro-2026-11-16
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render-toguro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      AGENTCUT_RENDER_CONCURRENCY: "2"
+      CI: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Instalar e preparar Agentcut nativo
+        run: |
+          npm ci
+          npm run sync:skill
+          npm run helper:build
+      - name: Obter e verificar projeto + bruto publico
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts staging workspace
+          ROOT="https://github.com/srmamacoofc1-design/ClipaTudo-Studio/releases/download/agentcut-2026-11-16"
+          curl --fail --location --retry 3 --retry-delay 3 "$ROOT/ClipaTudo-Projeto-Toguro.zip" --output project-toguro.zip
+          echo "4df4ec96705b716273f4297dd5b01159fe6ae280a1fa157586fd91ba8351bfe4  project-toguro.zip" | sha256sum --check
+          unzip -q project-toguro.zip -d staging
+          test -f staging/workspace/projects/toguro/project.json
+          test -f staging/workspace/projects/toguro/layers.json
+          cp -a staging/workspace/. workspace/
+          curl --fail --location --retry 3 --retry-delay 3 "$ROOT/Toguro-Bruto-Teste-10s.mp4" --output bruto-10s.mp4
+          echo "52dc3c71186296f522061daa0178cb012ac60017b22f4e31288b26bec7258701  bruto-10s.mp4" | sha256sum --check
+          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height -of json bruto-10s.mp4 > artifacts/bruto-ffprobe.json
+      - name: Renderizar copia da timeline no Remotion do Agentcut
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --import tsx scripts/render-preview-toguro.mjs 2>&1 | tee artifacts/render.log
+      - name: Validar video e audio gerados
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          ffprobe -v error -show_entries format=duration:stream=codec_type,codec_name,width,height -of json artifacts/Toguro-previa-original-720p.mp4 > artifacts/render-ffprobe.json
+          ffmpeg -nostdin -v error -i artifacts/Toguro-previa-original-720p.mp4 -f null - 
+      - name: Guardar previa e diagnosticos, inclusive em falhas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Toguro-rodada-001
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 14
