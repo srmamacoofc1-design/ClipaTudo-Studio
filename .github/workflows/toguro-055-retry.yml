@@ -1,0 +1,104 @@
+name: Render Toguro 055 35s retry
+on:
+  push:
+    branches:
+      - experimentos/toguro-35s-prova-2026-11-16
+    paths:
+      - scripts/render-five-toguro.mjs
+      - scripts/face-track-five-toguro.py
+      - .github/workflows/toguro-055-retry.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  edit:
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        clip: [toguro-055]
+    name: "Editar ${{ matrix.clip }} (35 segundos)"
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      AGENTCUT_RENDER_CONCURRENCY: "3"
+      CI: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Prepare Remotion/Agentcut and tracking tools
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install --quiet opencv-python-headless
+          npm ci
+          npm run sync:skill
+          npm run helper:build
+      - name: Get transcript word timing from analyzed public raw clips
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 43879050986
+          name: Toguro-cinco-brutos-analise
+          github-token: "${{ github.token }}"
+          path: analysis-data
+      - name: Download source and original Toguro style assets, verify SHA256
+        shell: bash
+        env:
+          CLIP_ID: "${{ matrix.clip }}"
+        run: |
+          set -euo pipefail
+          mkdir -p selection-work assets-staging workspace artifacts
+          curl --fail --location --retry 3 "https://github.com/srmamacoofc1-design/ClipaTudo-Studio/releases/download/agentcut-2026-11-16/ClipaTudo-Projeto-Toguro.zip" --output assets-staging/toguro.zip
+          echo "4df4ec96705b716273f4297dd5b01159fe6ae280a1fa157586fd91ba8351bfe4  assets-staging/toguro.zip" | sha256sum --check
+          unzip -q assets-staging/toguro.zip -d assets-staging
+          test -f assets-staging/workspace/projects/toguro/layers.json
+          cp -a assets-staging/workspace/. workspace/
+          python - <<'PY'
+          import json,os,urllib.request,hashlib,pathlib
+          clip_id=os.environ["CLIP_ID"]
+          catalog=json.load(open("clipatudo/materiais-brutos/catalogo.json"))
+          item=next(x for x in catalog["materiais"] if x["id"]==clip_id)
+          output=pathlib.Path("selection-work")/item["arquivo"]
+          urllib.request.urlretrieve(item["download"],output)
+          with open(output,"rb") as stream:
+            sha=hashlib.file_digest(stream,"sha256").hexdigest()
+          if sha != item["sha256"]:raise RuntimeError("SHA mismatch for "+clip_id)
+          print("SOURCE VERIFIED",clip_id,output.stat().st_size)
+          PY
+      - name: Determine moving face framing per source (no freeze frames)
+        shell: bash
+        env:
+          CLIP_ID: "${{ matrix.clip }}"
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os,subprocess
+          clip_id=os.environ["CLIP_ID"]
+          cat=json.load(open("clipatudo/materiais-brutos/catalogo.json"))
+          item=next(x for x in cat["materiais"] if x["id"]==clip_id)
+          subprocess.run(["python","scripts/face-track-five-toguro.py",
+            "selection-work/"+item["arquivo"],"analysis-data/"+clip_id+"-face-track.json"],check=True)
+          PY
+      - name: Render native editable Agentcut composition
+        shell: bash
+        env:
+          CLIP_ID: "${{ matrix.clip }}"
+        run: |
+          set -euo pipefail
+          node --import tsx scripts/render-five-toguro.mjs "$CLIP_ID" 2>&1 | tee "artifacts/$CLIP_ID-render.log"
+      - name: Save MP4, edit plans, native timeline and technical validation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: "${{ matrix.clip }}-edicao-Toguro-35s"
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 14
