@@ -1,0 +1,38 @@
+name: Analise dos brutos Toguro para edicao de 35 segundos
+on:
+  push:
+    branches:
+      - experimentos/toguro-35s-prova-2026-11-16
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar FFmpeg, Python e Whisper
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python3 -m pip install --quiet --break-system-packages faster-whisper
+      - name: Baixar dois candidatos brutos reais (SHA-256 verificados)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p selection-work artifacts
+          URL="https://github.com/srmamacoofc1-design/ClipaTudo-Studio/releases/download/materiais-brutos-capcut-2026-11-16"
+          curl --fail -L --retry 3 "$URL/04_Banco_01-10_ele_conta_que_perdeu_dois_contratos_milionarios_e_o_visto.mp4" -o selection-work/04_Banco_01-10_ele_conta_que_perdeu_dois_contratos_milionarios_e_o_visto.mp4
+          curl --fail -L --retry 3 "$URL/03_Selecao_94_V29_ele_jurou_que_era_so_clara_veja_a_reacao_de_quem_topou.mp4" -o selection-work/03_Selecao_94_V29_ele_jurou_que_era_so_clara_veja_a_reacao_de_quem_topou.mp4
+          echo "390f5a52e26d04970211d6a698e444e50bd2d97542b3ad433821c50c4ee82368  selection-work/04_Banco_01-10_ele_conta_que_perdeu_dois_contratos_milionarios_e_o_visto.mp4" | sha256sum --check
+          echo "7a2029ed7df63f205e3dc41d7ae7609b41521199cbc15ec92411b85c3e46f79b  selection-work/03_Selecao_94_V29_ele_jurou_que_era_so_clara_veja_a_reacao_de_quem_topou.mp4" | sha256sum --check
+      - name: Gerar miniaturas, proxies e transcricao com tempo por palavra
+        run: python3 scripts/analisar-brutos-toguro-35s.py
+      - name: Salvar material de analise
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Toguro-35s-analise-candidatos
+          path: artifacts/
+          retention-days: 14
