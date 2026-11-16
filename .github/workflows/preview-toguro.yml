@@ -24,6 +24,10 @@ jobs:
           npm ci
           npm run sync:skill
           npm run helper:build
+      - name: Instalar FFmpeg e FFprobe no runner
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
       - name: Obter e verificar projeto + bruto publico
         shell: bash
         run: |
