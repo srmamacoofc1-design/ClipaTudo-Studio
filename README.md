@@ -8,6 +8,8 @@ Baixe [o pacote completo atual](https://github.com/srmamacoofc1-design/ClipaTudo
 
 A interface local é http://127.0.0.1:3000/studio. O auxiliar usa 127.0.0.1:32118. Os projetos ficam em workspace/projects e as exportações em renders dentro de cada projeto. Fechar o editor preserva os arquivos no disco.
 
+Para enviar os materiais a outro GPT, use [os links diretos e o pedido de teste](clipatudo/PARA-O-GPT.md). Há também ZIPs individuais de Toguro/Vinheteiro e um MP4 bruto de 10 segundos do material atual para ensaio.
+
 ```powershell
 npm ci
 npm run sync:skill

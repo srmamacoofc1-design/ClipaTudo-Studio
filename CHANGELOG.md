@@ -13,6 +13,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### ClipaTudo — materials for another GPT
+
+- Added direct-download handoff instructions, individual native Toguro/Vinheteiro project bundles and an explicit 10-second raw-source test sample in the current public Release.
+
 ### ClipaTudo — publication cleanup
 
 - Removed the separate preview prototype and historical project copies from the active distribution.

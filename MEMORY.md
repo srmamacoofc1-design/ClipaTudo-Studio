@@ -20,3 +20,7 @@ O proprietário corrigiu a publicação em 16/11/2026: incluir projetos antigos,
 Manter MEMORY.md e CONTEXTO.md atualizados com decisões, validação e pendências. Antes de editar, conferir os arquivos reais. Preservar originais e exports no computador; o pacote publicado deve apresentar apenas o estado atual, com seus arquivos necessários.
 
 Código público: https://github.com/srmamacoofc1-design/ClipaTudo-Studio. Projetos: clipatudo/projects/toguro e clipatudo/projects/vinheteiro; no pacote, workspace/projects/toguro e workspace/projects/vinheteiro. Estilos correspondentes em clipatudo/editing-styles.
+
+## Materiais para outro GPT — 16/11/2026
+
+O proprietário pediu acesso público ao pacote, a um bruto de teste e aos estilos. A página `clipatudo/PARA-O-GPT.md` reúne os links diretos. A Release contém o pacote completo e alternativas individuais dos dois projetos com seus assets/scenes/layers/project. `Toguro-Bruto-Teste-10s.mp4` é uma amostra do material-fonte já disponível, sem as camadas da edição, não um novo vídeo escolhido pelo usuário. Toguro é a sugestão inicial para esse ensaio; não é aprovação final do estilo. Não garantir renderização no ambiente de outro GPT sem execução verificada.

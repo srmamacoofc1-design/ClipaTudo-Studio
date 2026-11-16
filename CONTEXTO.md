@@ -22,3 +22,7 @@ Comparar com as referências do proprietário e aprimorar pontualmente. Não res
 Doze testes específicos, typecheck com geração dos tipos Next e build do auxiliar passaram no GitHub. Os MP4 atuais foram decodificados sem erro e revistos por capturas amostradas; não há aprovação estética final nem revisão quadro a quadro registrada. A suíte geral anterior teve falhas não relacionadas e não foi declarada inteiramente aprovada.
 
 Filtros e animações proprietários do CapCut não foram importados como plugins. As referências em clipatudo/referencias são medidas de estilo; não representam outro editor incluído no produto.
+
+## Acesso por outro GPT
+
+Links de download em `clipatudo/PARA-O-GPT.md`. O pacote completo mantém o editor e os dois trabalhos atuais. Os ZIPs individuais contêm apenas um projeto e a receita, com assets necessários; o MP4 bruto é uma amostra de 10 segundos da fonte Toguro já disponível. Todos ficam na mesma Release pública `agentcut-2026-11-16`. O GPT receptor precisa verificar download, dependências e renderização no próprio ambiente. O pacote completo não foi refeito por uma mudança só de documentação; priorizar a memória atual do repositório ao continuar.
