@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "name": "ClipaTudo — Toguro",
+  "fps": 30,
+  "durationInFrames": 267,
+  "background": "#10100f",
+  "variants": {
+    "mobile": {
+      "width": 1080,
+      "height": 1920
+    }
+  },
+  "defaultVariant": "mobile",
+  "fonts": [
+    {
+      "family": "ClipaLegenda",
+      "src": "assets/fonts/legenda-pt.ttf"
+    },
+    {
+      "family": "ClipaTitulo",
+      "src": "assets/fonts/toguro-titulo.ttf"
+    },
+    {
+      "family": "ClipaTituloV",
+      "src": "assets/fonts/vinheteiro-titulo.otf"
+    }
+  ]
+}

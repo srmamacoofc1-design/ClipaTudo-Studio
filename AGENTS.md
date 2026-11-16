@@ -1,8 +1,8 @@
 # Agentcut
 
-## ClipaTudo Studio — read before editing
+## ClipaTudo — Agentcut only
 
-Read MEMORY.md, CONTEXTO.md and CONTINUIDADE.md first. The owner rejected V3 for losing the reference style. Use V2 as the editorial baseline and preserve its layout, captions, banner, cut rhythm and audio while making requested improvements. Do not replace this Agentcut-based editor with a separate app. Keep memory/context current; technical checks are not user approval. Complete projects/media are in the repository Release ZIP; lightweight timelines are in clipatudo/projects. Never publish credentials or sessions.
+ClipaTudo is this modified Agentcut editor. Read MEMORY.md, CONTEXTO.md and CONTINUIDADE.md before editing. The publication contains only current native projects toguro and vinheteiro. Preserve the owner's composition, captions, banner, cut rhythm and audio when making requested tracking/zoom improvements. Keep documentation current and do not reintroduce unrelated applications or historical prototypes into the product/package. Technical checks are not aesthetic approval.
 
 Follow React and Next.js best practices (https://react.dev/learn/you-might-not-need-an-effect).
 

@@ -13,18 +13,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
-### ClipaTudo Studio public snapshot — 2026-11-16
+### ClipaTudo — publication cleanup
 
-- Added complete source/workspace release packaging and continuation docs for other coding agents.
-- Recorded owner rejection of V3. Preserved V2 layouts and created focused correction copies instead of treating V3 tracking metrics as style approval.
-- Added composition-preserving face displacement helper and regression tests. Caption/banner/art/audio tracks stay equal to V2 in the proposed repair timelines.
-- Type checking generates Next route types first, including in clean clones.
+- Removed the separate preview prototype and historical project copies from the active distribution.
+- Kept only the Agentcut editor and current Toguro/Vinheteiro native projects, assets and editing recipes.
+- Rewrote memory/context/continuation docs around the current product and its actual pending work.
+
 
 ### Added
 
 - ClipaTudo native face framing: dense 10 Hz analysis for short shots, an explicit source search region, non-mutating diagnostics and gentle zoom endpoints with quintic easing. Existing crop paths remain editable and render identically in preview/export; no external AI API required.
 
-- ClipaTudo Toguro and Vinheteiro editing recipes and native Agentcut sample projects, replacing the separate preview shortcut. Original banner artwork, editable titles and word captions, separate footage/voice/music/SFX tracks.
+- Current ClipaTudo Toguro and Vinheteiro recipes and native Agentcut projects: original banner, editable captions/titles and separate footage/voice/music/SFX tracks.
 
 ### Changed
 
@@ -705,3 +705,4 @@ styles, voice-over and music with your own keys, and the `agentcut` helper with 
 [0.2.1]: https://github.com/deifos/Agentcut/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/deifos/Agentcut/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/deifos/Agentcut/releases/tag/v0.1.0
+

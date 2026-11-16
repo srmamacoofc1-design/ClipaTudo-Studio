@@ -1,18 +1,12 @@
-# ClipaTudo Studio
+# ClipaTudo
 
-Editor de vídeo baseado no **Agentcut 0.2.25**, mantido como uma adaptação do mesmo editor. Timelines editáveis, chat, vídeo/áudio/imagens em camadas, exportação pelo navegador e rastreio local de rosto. Código original: [deifos/Agentcut](https://github.com/deifos/Agentcut). Licença MIT preservada em LICENSE.
+Este é o **Agentcut modificado como o novo ClipaTudo**. O editor, a timeline, o chat e a exportação são os do Agentcut. Base técnica: Agentcut 0.2.25, com autoria e licença preservadas em [LICENSE](LICENSE) e [clipatudo/UPSTREAM.json](clipatudo/UPSTREAM.json).
 
-## Pacote completo
+## Usar o projeto
 
-Baixe **ClipaTudo-Studio-Pacote-Completo.zip** em [Releases](https://github.com/srmamacoofc1-design/ClipaTudo-Studio/releases/latest). Inclui código, projetos, mídias, fontes, imagens, músicas, efeitos, estilos e exports desta sessão. Os projetos não são recriados do zero ao fechar: project.json, layers.json, scenes e assets ficam no disco.
+Baixe [o pacote completo atual](https://github.com/srmamacoofc1-design/ClipaTudo-Studio/releases/latest), extraia e execute **Instalar-ClipaTudo.cmd**, depois **Iniciar-ClipaTudo.cmd**. Requer Node.js 22+. O pacote contém este código e os dois trabalhos atuais, **Toguro** e **Vinheteiro**, com suas mídias, fontes, sons e estilos nativos.
 
-O Git contém o código completo e as timelines/documentação legíveis por outras IAs. Vídeos e demais arquivos grandes vão no ZIP da Release. Nenhuma chave, conta ou sessão é necessária para ler ou modificar o código público. Serviços de IA opcionais usam as credenciais de cada usuário.
-
-## Instalar e abrir
-
-Instale Node.js 22 ou mais recente e Git. Extraia o pacote completo e execute **Instalar-ClipaTudo.cmd**, depois **Iniciar-ClipaTudo.cmd**. A instalação baixa dependências com npm, sincroniza os recursos do Agentcut e compila o helper. A interface local fica em http://127.0.0.1:3000/studio; o helper usa 127.0.0.1:32118. O script não encerra outro processo que já esteja usando essas portas.
-
-Pelo terminal, na pasta do código:
+A interface local é http://127.0.0.1:3000/studio. O auxiliar usa 127.0.0.1:32118. Os projetos ficam em workspace/projects e as exportações em renders dentro de cada projeto. Fechar o editor preserva os arquivos no disco.
 
 ```powershell
 npm ci
@@ -24,17 +18,13 @@ node packages/agentcut/dist/studio/cli.js --dir workspace --agent codex
 npm run dev -- --hostname 127.0.0.1 --port 3000
 ```
 
-O caminho de --dir é o workspace extraído. Em um clone sem pacote, use qualquer pasta vazia própria. O helper prepara os arquivos gerenciados automaticamente. Codex/Claude CLI são opcionais para a edição manual, necessários para o chat correspondente. FFmpeg é usado para verificações/processamento de mídia conforme a operação.
+## Continuar com outra IA
 
-## Antes de outra IA editar
+Leia [AGENTS.md](AGENTS.md), [MEMORY.md](MEMORY.md), [CONTEXTO.md](CONTEXTO.md) e [CONTINUIDADE.md](CONTINUIDADE.md). O código completo está neste repositório; as timelines/cenas legíveis estão em [clipatudo/projects](clipatudo/projects). As mídias completas estão no pacote da Release.
 
-Leia [MEMORY.md](MEMORY.md), [CONTEXTO.md](CONTEXTO.md), [CONTINUIDADE.md](CONTINUIDADE.md) e [o estado dos projetos](clipatudo/ESTADO-DOS-PROJETOS.md).
+O trabalho atual é aprimorar o estilo do proprietário no Agentcut: rastreio de rosto e zooms naturais, preservando composição, banner, legendas e áudio. A avaliação estética continua pendente. O apoio de torso do Toguro permanece uma limitação documentada.
 
-**A V3 foi rejeitada pelo proprietário.** A V2 é a referência de trabalho próxima de aceitável, com limitações documentadas. As cópias “ajuste pontual do estilo V2” são propostas de correção e ainda dependem de avaliação estética do usuário. Não promover métricas técnicas a aprovação do estilo.
-
-As alterações locais não atualizam o site oficial do Agentcut. Não há implantação pública nem atualização automática configurada neste repositório.
-
-## Verificação
+## Verificar alterações
 
 ```powershell
 node --import tsx --test tests/framing.test.mjs tests/composition-follow.test.mjs
@@ -42,5 +32,4 @@ npm run typecheck
 npm run helper:build
 ```
 
-Doze testes específicos de enquadramento passaram. A suíte geral anterior teve falhas, descritas no contexto; um teste de symlink teve EPERM no Windows. Conferência visual amostrada e decodificação dos MP4 não são aprovação estética ou revisão quadro a quadro. O histórico do produto original está em [README-AGENTCUT.md](README-AGENTCUT.md).
-
+O procedimento passou localmente e no GitHub. As verificações de código não representam aprovação editorial. As funcionalidades originais do Agentcut estão descritas em [README-AGENTCUT.md](README-AGENTCUT.md). Chaves e sessões são configuradas por cada usuário e ficam fora do pacote público.

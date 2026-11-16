@@ -1,0 +1,9 @@
+{
+  "product": "ClipaTudo",
+  "editor": "Agentcut",
+  "projects": ["toguro", "vinheteiro"],
+  "projectMetadata": "clipatudo/projects",
+  "workspaceProjects": "workspace/projects",
+  "editingStyles": "clipatudo/editing-styles",
+  "releasePolicy": "Incluir somente o código deste editor e os projetos listados, com seus assets. Não varrer pastas globais, outros aplicativos ou workspaces históricos."
+}
