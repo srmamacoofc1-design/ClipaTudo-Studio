@@ -53,8 +53,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ffprobe -v error -show_entries format=duration:stream=codec_type,codec_name,width,height -of json artifacts/Toguro-previa-original-720p.mp4 > artifacts/render-ffprobe.json
-          ffmpeg -nostdin -v error -i artifacts/Toguro-previa-original-720p.mp4 -f null - 
+          ffprobe -v error -show_entries format=duration:stream=codec_type,codec_name,width,height -of json artifacts/Toguro-teste-sem-congelamento-720p.mp4 > artifacts/render-ffprobe.json
+          ffmpeg -nostdin -v error -i artifacts/Toguro-teste-sem-congelamento-720p.mp4 -f null - 
       - name: Guardar previa e diagnosticos, inclusive em falhas
         if: always()
         uses: actions/upload-artifact@v4
