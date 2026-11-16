@@ -1,0 +1,50 @@
+name: Toguro 5 brutos analise de edicao
+on:
+  push:
+    paths:
+      - scripts/analisar-5-brutos-toguro.py
+      - .github/workflows/toguro-5-analise.yml
+    branches:
+      - experimentos/toguro-35s-prova-2026-11-16
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install ffmpeg and transcription model
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install --quiet faster-whisper
+      - name: Download 5 raw videos and verify SHA256 from catalog
+        shell: bash
+        run: |
+          mkdir -p selection-work artifacts
+          python - <<'PY'
+          import json,pathlib,urllib.request,hashlib
+          ids=["toguro-055","toguro-034","toguro-044","toguro-024","toguro-066"]
+          catalog=json.load(open("clipatudo/materiais-brutos/catalogo.json"))
+          byid={x["id"]:x for x in catalog["materiais"]}
+          for id in ids:
+              x=byid[id];dst=pathlib.Path("selection-work")/x["arquivo"]
+              urllib.request.urlretrieve(x["download"],dst)
+              sha=hashlib.file_digest(open(dst,"rb"),"sha256").hexdigest()
+              if sha != x["sha256"]:raise RuntimeError(f"Checksum mismatch {id}")
+              print(f"VERIFIED {id} {dst.stat().st_size} bytes")
+          PY
+      - name: Analyze five recordings and transcribe real speech
+        run: python scripts/analisar-5-brutos-toguro.py
+      - name: Save transcript, proxy and frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Toguro-cinco-brutos-analise
+          path: artifacts
+          retention-days: 14
