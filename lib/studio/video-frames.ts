@@ -1,0 +1,187 @@
+// Small frame grabs from video files for the timeline's film strips. WebCodecs decodes each file's
+// frames in one forward pass, in time order. Files or browsers it can't handle fall back to one hidden
+// <video>, one seek at a time (browsers cap how many media players a page may create). A bounded
+// cache keeps small JPEG data URLs (no object URLs to leak or revoke while visible).
+
+const THUMB_HEIGHT = 90;
+const MAX_CACHED_FRAMES = 512;
+const DECODE_TIMEOUT_MS = 60_000;
+const cache = new Map<string, string>();
+const pending = new Map<string, Promise<string | null>>();
+
+interface Job {
+  url: string;
+  time: number;
+  resolve(value: string | null): void;
+}
+
+const queue: Job[] = [];
+const fallback: Job[] = [];
+let running = false;
+
+const key = (url: string, time: number) => `${url}#${time}`;
+
+function waitFor(video: HTMLVideoElement, event: "loadedmetadata" | "seeked") {
+  return new Promise<void>((resolve, reject) => {
+    const done = () => {
+      video.removeEventListener(event, done);
+      video.removeEventListener("error", fail);
+      resolve();
+    };
+    const fail = () => {
+      video.removeEventListener(event, done);
+      video.removeEventListener("error", fail);
+      reject(new Error("video error"));
+    };
+    video.addEventListener(event, done);
+    video.addEventListener("error", fail);
+  });
+}
+
+async function grab(
+  video: HTMLVideoElement,
+  time: number,
+): Promise<string | null> {
+  const target = Math.min(
+    Math.max(0, time),
+    Math.max(0, video.duration - 0.05),
+  );
+  if (Math.abs(video.currentTime - target) > 0.01) {
+    const seeked = waitFor(video, "seeked");
+    video.currentTime = target;
+    await seeked;
+  }
+  const scale = THUMB_HEIGHT / Math.max(1, video.videoHeight);
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, Math.round(video.videoWidth * scale));
+  canvas.height = THUMB_HEIGHT;
+  canvas.getContext("2d")?.drawImage(video, 0, 0, canvas.width, canvas.height);
+  return canvas.toDataURL("image/jpeg", 0.72);
+}
+
+/** Decode `jobs` (one file's) in time order; returns the ones left for the hidden <video>. */
+async function decodeInOrder(url: string, jobs: Job[]): Promise<Job[]> {
+  if (typeof VideoDecoder === "undefined") return jobs;
+  const left = [...jobs].sort((a, b) => a.time - b.time);
+  try {
+    const { Input, UrlSource, ALL_FORMATS, CanvasSink } = await import("mediabunny");
+    const input = new Input({
+      source: new UrlSource(url, { getRetryDelay: () => null }),
+      formats: ALL_FORMATS,
+    });
+    const timeout = setTimeout(() => input.dispose(), DECODE_TIMEOUT_MS);
+    try {
+      const track = await input.getPrimaryVideoTrack();
+      if (!track || !(await track.canDecode())) return left;
+      const start = await track.getFirstTimestamp();
+      const width = Math.max(1, Math.round((track.displayWidth * THUMB_HEIGHT) / Math.max(1, track.displayHeight)));
+      const sink = new CanvasSink(track, { width, height: THUMB_HEIGHT, fit: "fill", poolSize: 1 });
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = THUMB_HEIGHT;
+      const context = canvas.getContext("2d");
+      const times = left.map((job) => start + Math.max(0, job.time));
+      for await (const frame of sink.canvasesAtTimestamps(times)) {
+        const job = left[0];
+        if (!frame || !context) break;
+        left.shift();
+        context.drawImage(frame.canvas, 0, 0, width, THUMB_HEIGHT);
+        job.resolve(canvas.toDataURL("image/jpeg", 0.72));
+      }
+    } finally {
+      clearTimeout(timeout);
+      input.dispose();
+    }
+  } catch {
+    // Whatever wasn't reached goes through the hidden <video>.
+  }
+  return left;
+}
+
+async function run() {
+  if (running) return;
+  running = true;
+  // Everything queued for one file at a time, so it decodes in one pass.
+  while (queue.length) {
+    const url = queue[0].url;
+    const jobs = queue.filter((job) => job.url === url);
+    queue.splice(0, queue.length, ...queue.filter((job) => job.url !== url));
+    fallback.push(...(await decodeInOrder(url, jobs)));
+  }
+  running = false;
+  queue.push(...fallback.splice(0));
+  if (queue.length) await runOnElement();
+  if (queue.length) void run();
+}
+
+async function runOnElement() {
+  running = true;
+  const video = document.createElement("video");
+  video.crossOrigin = "anonymous";
+  video.muted = true;
+  video.preload = "auto";
+  let currentUrl = "";
+  try {
+    while (queue.length) {
+      // Finish one file before moving to the next, so the element isn't reloaded per frame.
+      const index = Math.max(
+        0,
+        queue.findIndex((job) => job.url === currentUrl),
+      );
+      const job = queue.splice(index, 1)[0];
+      try {
+        if (job.url !== currentUrl) {
+          currentUrl = job.url;
+          const loaded = waitFor(video, "loadedmetadata");
+          video.src = job.url;
+          await loaded;
+        }
+        job.resolve(await grab(video, job.time));
+      } catch {
+        currentUrl = "";
+        job.resolve(null);
+      }
+    }
+  } finally {
+    video.removeAttribute("src");
+    video.load();
+    running = false;
+  }
+}
+
+/** A frame of `url` at `time` seconds (rounded to the cache step), or null if it can't be read. */
+export function videoFrame(url: string, time: number): Promise<string | null> {
+  const k = key(url, time);
+  const hit = cachedVideoFrame(url, time);
+  if (hit) return Promise.resolve(hit);
+  const inFlight = pending.get(k);
+  if (inFlight) return inFlight;
+  const promise = new Promise<string | null>((resolve) => {
+    queue.push({
+      url,
+      time,
+      resolve: (value) => {
+        pending.delete(k);
+        if (value) {
+          if (cache.size >= MAX_CACHED_FRAMES)
+            cache.delete(cache.keys().next().value!);
+          cache.set(k, value);
+        }
+        resolve(value);
+      },
+    });
+    void run();
+  });
+  pending.set(k, promise);
+  return promise;
+}
+
+/** Already-grabbed frame, if any (for a synchronous first paint). */
+export function cachedVideoFrame(url: string, time: number) {
+  const k = key(url, time);
+  const value = cache.get(k);
+  if (!value) return null;
+  cache.delete(k);
+  cache.set(k, value);
+  return value;
+}

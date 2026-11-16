@@ -1,0 +1,1305 @@
+{
+  "version": 1,
+  "tracks": [
+    {
+      "id": "legendas",
+      "name": "Legendas · uma palavra por vez",
+      "kind": "scene",
+      "clips": [
+        {
+          "id": "legenda-01",
+          "name": "O",
+          "from": 0,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "O",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-02",
+          "name": "USO",
+          "from": 5,
+          "duration": 13,
+          "scene": "StyledText",
+          "props": {
+            "text": "USO",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-03",
+          "name": "DA",
+          "from": 18,
+          "duration": 10,
+          "scene": "StyledText",
+          "props": {
+            "text": "DA",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-04",
+          "name": "TIRZEPATIDA",
+          "from": 28,
+          "duration": 32,
+          "scene": "StyledText",
+          "props": {
+            "text": "TIRZEPATIDA",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-05",
+          "name": "FAZ",
+          "from": 60,
+          "duration": 1,
+          "scene": "StyledText",
+          "props": {
+            "text": "FAZ",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-06",
+          "name": "FEZ",
+          "from": 69,
+          "duration": 7,
+          "scene": "StyledText",
+          "props": {
+            "text": "FEZ",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-07",
+          "name": "COM",
+          "from": 76,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "COM",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-08",
+          "name": "QUE",
+          "from": 81,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "QUE",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-09",
+          "name": "EU",
+          "from": 86,
+          "duration": 8,
+          "scene": "StyledText",
+          "props": {
+            "text": "EU",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-10",
+          "name": "CRIASSE",
+          "from": 94,
+          "duration": 17,
+          "scene": "StyledText",
+          "props": {
+            "text": "CRIASSE",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-11",
+          "name": "UM",
+          "from": 111,
+          "duration": 2,
+          "scene": "StyledText",
+          "props": {
+            "text": "UM",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-12",
+          "name": "POUQUINHO",
+          "from": 113,
+          "duration": 8,
+          "scene": "StyledText",
+          "props": {
+            "text": "POUQUINHO",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-13",
+          "name": "MAIS",
+          "from": 121,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "MAIS",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-14",
+          "name": "DE",
+          "from": 127,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "DE",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-15",
+          "name": "TÁ",
+          "from": 140,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "TÁ",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-16",
+          "name": "ME",
+          "from": 146,
+          "duration": 4,
+          "scene": "StyledText",
+          "props": {
+            "text": "ME",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-17",
+          "name": "INCOMODANDO",
+          "from": 150,
+          "duration": 17,
+          "scene": "StyledText",
+          "props": {
+            "text": "INCOMODANDO",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-18",
+          "name": "FAZ",
+          "from": 171,
+          "duration": 16,
+          "scene": "StyledText",
+          "props": {
+            "text": "FAZ",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-19",
+          "name": "JURO",
+          "from": 187,
+          "duration": 9,
+          "scene": "StyledText",
+          "props": {
+            "text": "JURO",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-20",
+          "name": "PRA",
+          "from": 196,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "PRA",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-21",
+          "name": "VOCÊS",
+          "from": 202,
+          "duration": 11,
+          "scene": "StyledText",
+          "props": {
+            "text": "VOCÊS",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-22",
+          "name": "É",
+          "from": 213,
+          "duration": 10,
+          "scene": "StyledText",
+          "props": {
+            "text": "É",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-23",
+          "name": "É",
+          "from": 223,
+          "duration": 4,
+          "scene": "StyledText",
+          "props": {
+            "text": "É",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-24",
+          "name": "O",
+          "from": 227,
+          "duration": 8,
+          "scene": "StyledText",
+          "props": {
+            "text": "O",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-25",
+          "name": "PEITINHO",
+          "from": 235,
+          "duration": 16,
+          "scene": "StyledText",
+          "props": {
+            "text": "PEITINHO",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-26",
+          "name": "AQUI",
+          "from": 251,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "AQUI",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-27",
+          "name": "TÁ",
+          "from": 257,
+          "duration": 7,
+          "scene": "StyledText",
+          "props": {
+            "text": "TÁ",
+            "y": 0.935,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "titulos",
+      "name": "Títulos editáveis · fonte original",
+      "kind": "scene",
+      "clips": [
+        {
+          "id": "titulo-1",
+          "name": "Título amarelo",
+          "from": 0,
+          "duration": 267,
+          "scene": "StyledText",
+          "props": {
+            "text": "TOGURO MUDOU MUITO",
+            "y": 0.36270022883295194,
+            "size": 70,
+            "color": "#f0ff00",
+            "font": "ClipaTitulo",
+            "stroke": 9
+          }
+        },
+        {
+          "id": "titulo-2",
+          "name": "Título branco",
+          "from": 0,
+          "duration": 267,
+          "scene": "StyledText",
+          "props": {
+            "text": "DEPOIS DA TIRZEPATIDA",
+            "y": 0.40160183066361554,
+            "size": 66,
+            "color": "#ffffff",
+            "font": "ClipaTitulo",
+            "stroke": 9
+          }
+        }
+      ]
+    },
+    {
+      "id": "banner",
+      "name": "Seu banner original · PNG transparente",
+      "kind": "image",
+      "clips": [
+        {
+          "id": "banner-original",
+          "src": "assets/images/banner-original.png",
+          "from": 0,
+          "duration": 267,
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "seta",
+      "name": "Seta curva · camada independente",
+      "kind": "image",
+      "clips": [
+        {
+          "id": "seta-curva",
+          "src": "assets/images/seta-curva.svg",
+          "from": 0,
+          "duration": 267,
+          "box": {
+            "x": 0.395,
+            "y": 0.15,
+            "width": 0.25,
+            "height": 0.089
+          },
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "arte",
+      "name": "Arte superior original",
+      "kind": "image",
+      "clips": [
+        {
+          "id": "arte-original",
+          "src": "assets/images/arte-original.png",
+          "from": 0,
+          "duration": 267,
+          "box": {
+            "x": -0.14241303955052897,
+            "y": -0.041828208270071554,
+            "width": 1.284826079101058,
+            "height": 0.406310878782706
+          },
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "transicao",
+      "name": "Transição · flash curto na troca",
+      "kind": "scene",
+      "clips": [
+        {
+          "id": "flash-troca",
+          "scene": "CutFlash",
+          "from": 135,
+          "duration": 9,
+          "props": {
+            "top": 0.365,
+            "strength": 0.48
+          },
+          "note": "Pico no quadro 138, junto da troca real e do riser."
+        }
+      ]
+    },
+    {
+      "id": "video",
+      "name": "Vídeo · cortes e enquadramentos",
+      "kind": "video",
+      "clips": [
+        {
+          "id": "video-1",
+          "name": "Tomada 1",
+          "src": "assets/video/fonte-01.mp4",
+          "duration": 91,
+          "trimStart": 11,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": 0,
+            "y": 0.462,
+            "width": 1,
+            "height": 0.538
+          },
+          "note": "Vídeo em movimento; rastreio local de rosto em caminho editável.",
+          "from": 0,
+          "variants": {
+            "mobile": {
+              "framing": {
+                "crop": {
+                  "x": 0.07625464684014877,
+                  "y": 0,
+                  "width": 0.5881157063197026,
+                  "height": 1
+                },
+                "path": [
+                  {
+                    "seconds": 0.36666666666666664,
+                    "crop": {
+                      "x": 0.07625464684014877,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  },
+                  {
+                    "seconds": 0.4666666666666667,
+                    "crop": {
+                      "x": 0.0762587882781035,
+                      "y": 0.000005351825859700732,
+                      "width": 0.5881074234437931,
+                      "height": 0.9999859162477376
+                    }
+                  },
+                  {
+                    "seconds": 0.5666666666666667,
+                    "crop": {
+                      "x": 0.07628610258273466,
+                      "y": 0.00004064908334938666,
+                      "width": 0.5880527948345308,
+                      "height": 0.9998930287280279
+                    }
+                  },
+                  {
+                    "seconds": 0.6666666666666666,
+                    "crop": {
+                      "x": 0.07635529778618677,
+                      "y": 0.00013006746490007437,
+                      "width": 0.5879144044276265,
+                      "height": 0.9996577171976314
+                    }
+                  },
+                  {
+                    "seconds": 0.7666666666666666,
+                    "crop": {
+                      "x": 0.07648049555041331,
+                      "y": 0.00029185586774271854,
+                      "width": 0.5876640088991735,
+                      "height": 0.9992319582427823
+                    }
+                  },
+                  {
+                    "seconds": 0.8666666666666667,
+                    "crop": {
+                      "x": 0.07667154449302904,
+                      "y": 0.0005387412932256752,
+                      "width": 0.587281911013942,
+                      "height": 0.9985822597546693
+                    }
+                  },
+                  {
+                    "seconds": 0.9666666666666666,
+                    "crop": {
+                      "x": 0.07693434534884458,
+                      "y": 0.0008783490409419725,
+                      "width": 0.5867563093023109,
+                      "height": 0.9976885551554159
+                    }
+                  },
+                  {
+                    "seconds": 1.0666666666666667,
+                    "crop": {
+                      "x": 0.08485434582780632,
+                      "y": 0.0013136470628624108,
+                      "width": 0.5860826103454128,
+                      "height": 0.9965430340450989
+                    }
+                  },
+                  {
+                    "seconds": 1.1666666666666667,
+                    "crop": {
+                      "x": 0.10333154030641839,
+                      "y": 0.0018434171681496192,
+                      "width": 0.5852626995042073,
+                      "height": 0.9951489021890799
+                    }
+                  },
+                  {
+                    "seconds": 1.2666666666666666,
+                    "crop": {
+                      "x": 0.12917052808055435,
+                      "y": 0.002462750982789086,
+                      "width": 0.5843041733361959,
+                      "height": 0.9935190763610814
+                    }
+                  },
+                  {
+                    "seconds": 1.3666666666666667,
+                    "crop": {
+                      "x": 0.15852779189225819,
+                      "y": 0.0031635651322233227,
+                      "width": 0.5832195422612134,
+                      "height": 0.9916748285994124
+                    }
+                  },
+                  {
+                    "seconds": 1.4666666666666668,
+                    "crop": {
+                      "x": 0.19108135597613635,
+                      "y": 0.003935127964099838,
+                      "width": 0.5820254153668999,
+                      "height": 0.9896444000944741
+                    }
+                  },
+                  {
+                    "seconds": 1.5666666666666667,
+                    "crop": {
+                      "x": 0.22393874837245764,
+                      "y": 0.004764589152773779,
+                      "width": 0.5807416807541586,
+                      "height": 0.9874616074927006
+                    }
+                  },
+                  {
+                    "seconds": 1.6666666666666667,
+                    "crop": {
+                      "x": 0.2559089238916584,
+                      "y": 0.005637503573592939,
+                      "width": 0.5793906947511145,
+                      "height": 0.9851644642800186
+                    }
+                  },
+                  {
+                    "seconds": 1.7666666666666666,
+                    "crop": {
+                      "x": 0.29056334524947725,
+                      "y": 0.00653834171414619,
+                      "width": 0.5779964919634535,
+                      "height": 0.9827938375943521
+                    }
+                  },
+                  {
+                    "seconds": 1.8666666666666667,
+                    "crop": {
+                      "x": 0.32137398566196035,
+                      "y": 0.0074509803921568585,
+                      "width": 0.57658402580363,
+                      "height": 0.9803921568627451
+                    }
+                  },
+                  {
+                    "seconds": 1.9666666666666668,
+                    "crop": {
+                      "x": 0.34386467452173314,
+                      "y": 0.008359169462577698,
+                      "width": 0.5751784461809394,
+                      "height": 0.9780021856247955
+                    }
+                  },
+                  {
+                    "seconds": 2.0666666666666664,
+                    "crop": {
+                      "x": 0.3603756748479207,
+                      "y": 0.02433413768030035,
+                      "width": 0.5738044177501719,
+                      "height": 0.9756658623196997
+                    }
+                  },
+                  {
+                    "seconds": 2.1666666666666665,
+                    "crop": {
+                      "x": 0.3725772892932362,
+                      "y": 0.026576789852724936,
+                      "width": 0.572485478783757,
+                      "height": 0.9734232101472751
+                    }
+                  },
+                  {
+                    "seconds": 2.2666666666666666,
+                    "crop": {
+                      "x": 0.38166050163861087,
+                      "y": 0.028688689247187593,
+                      "width": 0.5712434375797064,
+                      "height": 0.9713113107528124
+                    }
+                  },
+                  {
+                    "seconds": 2.3666666666666667,
+                    "crop": {
+                      "x": 0.3884737354737205,
+                      "y": 0.030636668262326583,
+                      "width": 0.570097800525322,
+                      "height": 0.9693633317376734
+                    }
+                  },
+                  {
+                    "seconds": 2.466666666666667,
+                    "crop": {
+                      "x": 0.39362100012783174,
+                      "y": 0.03239240590596715,
+                      "width": 0.5690652236409202,
+                      "height": 0.9676075940940329
+                    }
+                  },
+                  {
+                    "seconds": 2.566666666666667,
+                    "crop": {
+                      "x": 0.3963413011400089,
+                      "y": 0.03393333722113545,
+                      "width": 0.5681589777321099,
+                      "height": 0.9660666627788645
+                    }
+                  },
+                  {
+                    "seconds": 2.6666666666666665,
+                    "crop": {
+                      "x": 0.3967265818717202,
+                      "y": 0.03524355807587942,
+                      "width": 0.5673884162686872,
+                      "height": 0.9647564419241206
+                    }
+                  },
+                  {
+                    "seconds": 2.7666666666666666,
+                    "crop": {
+                      "x": 0.39343325414601404,
+                      "y": 0.03631474423022363,
+                      "width": 0.5667584348669252,
+                      "height": 0.9636852557697764
+                    }
+                  },
+                  {
+                    "seconds": 2.8666666666666667,
+                    "crop": {
+                      "x": 0.37934892268702564,
+                      "y": 0.03714710252600306,
+                      "width": 0.5662689118798919,
+                      "height": 0.9628528974739969
+                    }
+                  },
+                  {
+                    "seconds": 2.966666666666667,
+                    "crop": {
+                      "x": 0.35419527439215104,
+                      "y": 0.037376343890914265,
+                      "width": 0.5659141212292538,
+                      "height": 0.9622496307242305
+                    }
+                  },
+                  {
+                    "seconds": 3.066666666666667,
+                    "crop": {
+                      "x": 0.3217629394912349,
+                      "y": 0.03752625270537696,
+                      "width": 0.5656821114179347,
+                      "height": 0.9618551338440656
+                    }
+                  },
+                  {
+                    "seconds": 3.1666666666666665,
+                    "crop": {
+                      "x": 0.29008795589027336,
+                      "y": 0.0376089979314454,
+                      "width": 0.5655540488730035,
+                      "height": 0.9616373832491486
+                    }
+                  },
+                  {
+                    "seconds": 3.2666666666666666,
+                    "crop": {
+                      "x": 0.2613911554792978,
+                      "y": 0.03764163998095882,
+                      "width": 0.5655035296572002,
+                      "height": 0.9615514831188502
+                    }
+                  },
+                  {
+                    "seconds": 3.3666666666666667,
+                    "crop": {
+                      "x": 0.24280777080345,
+                      "y": 0.03764658818150651,
+                      "width": 0.5654958714612525,
+                      "height": 0.9615384615384615
+                    }
+                  }
+                ],
+                "before": null
+              }
+            }
+          }
+        },
+        {
+          "id": "video-2",
+          "name": "Tomada 2",
+          "src": "assets/video/fonte-01.mp4",
+          "duration": 47,
+          "trimStart": 127,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": 0,
+            "y": 0.462,
+            "width": 1,
+            "height": 0.538
+          },
+          "note": "Vídeo em movimento; rastreio local de rosto em caminho editável.",
+          "from": 91,
+          "variants": {
+            "mobile": {
+              "framing": {
+                "crop": {
+                  "x": 0.4336583142693738,
+                  "y": 0.03846153846153855,
+                  "width": 0.5654958714612525,
+                  "height": 0.9615384615384615
+                },
+                "path": [
+                  {
+                    "seconds": 4.233333333333333,
+                    "crop": {
+                      "x": 0.4336583142693738,
+                      "y": 0.03846153846153855,
+                      "width": 0.5654958714612525,
+                      "height": 0.9615384615384615
+                    }
+                  },
+                  {
+                    "seconds": 4.329166666666667,
+                    "crop": {
+                      "x": 0.43367037538193104,
+                      "y": 0.03847712458761032,
+                      "width": 0.565471749236138,
+                      "height": 0.9614974454172199
+                    }
+                  },
+                  {
+                    "seconds": 4.425,
+                    "crop": {
+                      "x": 0.43374557078444675,
+                      "y": 0.03857429680269969,
+                      "width": 0.5653213584311065,
+                      "height": 0.9612417290617216
+                    }
+                  },
+                  {
+                    "seconds": 4.520833333333333,
+                    "crop": {
+                      "x": 0.43392324528598525,
+                      "y": 0.0388038989366305,
+                      "width": 0.5649660094280295,
+                      "height": 0.9606375129197984
+                    }
+                  },
+                  {
+                    "seconds": 4.616666666666667,
+                    "crop": {
+                      "x": 0.43112408824791315,
+                      "y": 0.0391874590903718,
+                      "width": 0.5643723837682042,
+                      "height": 0.9596281440941634
+                    }
+                  },
+                  {
+                    "seconds": 4.7125,
+                    "crop": {
+                      "x": 0.4160330683974532,
+                      "y": 0.03972201039381451,
+                      "width": 0.5635450731961297,
+                      "height": 0.9582214301377352
+                    }
+                  },
+                  {
+                    "seconds": 4.808333333333334,
+                    "crop": {
+                      "x": 0.39373256716414107,
+                      "y": 0.04038513854743603,
+                      "width": 0.5625187677160044,
+                      "height": 0.9564763560492575
+                    }
+                  },
+                  {
+                    "seconds": 4.904166666666667,
+                    "crop": {
+                      "x": 0.37217274237561765,
+                      "y": 0.04114017430186012,
+                      "width": 0.5613502193317682,
+                      "height": 0.9544894198534047
+                    }
+                  },
+                  {
+                    "seconds": 5,
+                    "crop": {
+                      "x": 0.34600710280731267,
+                      "y": 0.041941391941392014,
+                      "width": 0.5601101964949547,
+                      "height": 0.9523809523809523
+                    }
+                  },
+                  {
+                    "seconds": 5.095833333333333,
+                    "crop": {
+                      "x": 0.3250116981477129,
+                      "y": 0.04273907760295559,
+                      "width": 0.5588756400047665,
+                      "height": 0.950281779587364
+                    }
+                  },
+                  {
+                    "seconds": 5.191666666666666,
+                    "crop": {
+                      "x": 0.30688066134305475,
+                      "y": 0.04348437514331094,
+                      "width": 0.5577221631906496,
+                      "height": 0.9483204702706394
+                    }
+                  },
+                  {
+                    "seconds": 5.2875,
+                    "crop": {
+                      "x": 0.2920696759113137,
+                      "y": 0.04413388258402595,
+                      "width": 0.5567169381189232,
+                      "height": 0.9466112401634946
+                    }
+                  },
+                  {
+                    "seconds": 5.383333333333334,
+                    "crop": {
+                      "x": 0.2834724613707549,
+                      "y": 0.044654040712453824,
+                      "width": 0.5559119034739277,
+                      "height": 0.9452424029834212
+                    }
+                  },
+                  {
+                    "seconds": 5.479166666666667,
+                    "crop": {
+                      "x": 0.27785488350865994,
+                      "y": 0.045025411812931515,
+                      "width": 0.5553371424816536,
+                      "height": 0.9442651106137431
+                    }
+                  },
+                  {
+                    "seconds": 5.575,
+                    "crop": {
+                      "x": 0.2715955491628363,
+                      "y": 0.045246977955202605,
+                      "width": 0.5549942305651844,
+                      "height": 0.9436820418182928
+                    }
+                  },
+                  {
+                    "seconds": 5.670833333333333,
+                    "crop": {
+                      "x": 0.2650712170627583,
+                      "y": 0.04534058302137356,
+                      "width": 0.5548493605399049,
+                      "height": 0.9434357126967904
+                    }
+                  },
+                  {
+                    "seconds": 5.766666666666667,
+                    "crop": {
+                      "x": 0.25900785963940404,
+                      "y": 0.045355587808418085,
+                      "width": 0.5548261380374552,
+                      "height": 0.9433962264150942
+                    }
+                  }
+                ],
+                "before": null
+              }
+            }
+          }
+        },
+        {
+          "id": "video-3",
+          "name": "Selfie · rosto visível",
+          "src": "assets/video/fonte-02.mp4",
+          "duration": 27,
+          "trimStart": 5,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": 0,
+            "y": 0.462,
+            "width": 1,
+            "height": 0.538
+          },
+          "note": "Enquadramento do CapCut; fonte 0.167s.",
+          "from": 138,
+          "variants": {
+            "mobile": {
+              "framing": {
+                "crop": {
+                  "x": 0.1895358968401487,
+                  "y": 0,
+                  "width": 0.5881157063197026,
+                  "height": 1
+                },
+                "path": [
+                  {
+                    "seconds": 0.16666666666666666,
+                    "crop": {
+                      "x": 0.1895358968401487,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  },
+                  {
+                    "seconds": 0.26296296296296295,
+                    "crop": {
+                      "x": 0.1895358968401487,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  },
+                  {
+                    "seconds": 0.3592592592592593,
+                    "crop": {
+                      "x": 0.1895358968401487,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  },
+                  {
+                    "seconds": 0.4555555555555556,
+                    "crop": {
+                      "x": 0.1895358968401487,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  },
+                  {
+                    "seconds": 0.5518518518518518,
+                    "crop": {
+                      "x": 0.1895358968401487,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  },
+                  {
+                    "seconds": 0.6481481481481483,
+                    "crop": {
+                      "x": 0.19106415304222552,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  },
+                  {
+                    "seconds": 0.7444444444444445,
+                    "crop": {
+                      "x": 0.19195829322321972,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  },
+                  {
+                    "seconds": 0.8407407407407407,
+                    "crop": {
+                      "x": 0.19195829322321972,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  },
+                  {
+                    "seconds": 0.937037037037037,
+                    "crop": {
+                      "x": 0.19195829322321972,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  },
+                  {
+                    "seconds": 1.0333333333333334,
+                    "crop": {
+                      "x": 0.146875,
+                      "y": 0,
+                      "width": 0.5881157063197026,
+                      "height": 1
+                    }
+                  }
+                ],
+                "before": null
+              }
+            }
+          }
+        },
+        {
+          "id": "video-espelho",
+          "name": "Câmera vira ao espelho · imagem em movimento",
+          "src": "assets/video/fonte-02.mp4",
+          "duration": 102,
+          "trimStart": 32,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": -0.44798664487885576,
+            "y": 0.3586991733462844,
+            "width": 2.0260545905707197,
+            "height": 0.6410563352977668
+          },
+          "note": "Rosto sai da imagem original e fica cortado no espelho. Sem falsa alegação de rastreio; movimento original preservado, nenhum congelamento.",
+          "from": 165
+        }
+      ]
+    },
+    {
+      "id": "fala",
+      "name": "Fala original · cortes separados",
+      "kind": "audio",
+      "clips": [
+        {
+          "id": "fala-1",
+          "name": "Fala · tomada 1",
+          "src": "assets/voice/fala-01.wav",
+          "from": 0,
+          "duration": 91,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 1,
+          "fadeOut": 1
+        },
+        {
+          "id": "fala-2",
+          "name": "Fala · tomada 2",
+          "src": "assets/voice/fala-02.wav",
+          "from": 91,
+          "duration": 47,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 1,
+          "fadeOut": 1
+        },
+        {
+          "id": "fala-3",
+          "name": "Fala · tomada 3",
+          "src": "assets/voice/fala-03.wav",
+          "from": 138,
+          "duration": 129,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 1,
+          "fadeOut": 1
+        }
+      ]
+    },
+    {
+      "id": "musica",
+      "name": "Música original",
+      "kind": "audio",
+      "clips": [
+        {
+          "id": "musica-2",
+          "name": "Radiohead - Everything in it's right place (slowed to perfection  best bit) Instrumental",
+          "src": "assets/music/original-2.wav",
+          "from": 0,
+          "duration": 267,
+          "volume": 0.1472540646791458,
+          "role": "music",
+          "fadeIn": 6,
+          "fadeOut": 8,
+          "note": "Trilha original, faixa independente sob a fala."
+        }
+      ]
+    },
+    {
+      "id": "sfx",
+      "name": "Efeitos sonoros sincronizados",
+      "kind": "audio",
+      "clips": [
+        {
+          "id": "sfx-1",
+          "name": "Tension Riser # 5 - Inspire Sound Effects",
+          "src": "assets/sfx/original-1.wav",
+          "from": 82,
+          "duration": 72,
+          "volume": 0.2,
+          "role": "sfx",
+          "fadeIn": 2,
+          "fadeOut": 3,
+          "note": "Pico medido no quadro 56; alinhado à troca/flash no quadro 138."
+        }
+      ]
+    }
+  ],
+  "markers": [
+    {
+      "id": "corte-1",
+      "frame": 0,
+      "label": "Tomada 1",
+      "kind": "section"
+    },
+    {
+      "id": "corte-2",
+      "frame": 91,
+      "label": "Tomada 2",
+      "kind": "section"
+    },
+    {
+      "id": "corte-3",
+      "frame": 138,
+      "label": "Tomada 3",
+      "kind": "section"
+    },
+    {
+      "id": "pico-riser",
+      "frame": 138,
+      "label": "Troca + pico do riser + flash",
+      "kind": "cue"
+    }
+  ]
+}

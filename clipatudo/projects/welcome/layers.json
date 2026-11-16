@@ -1,0 +1,878 @@
+{
+  "version": 1,
+  "tracks": [
+    {
+      "id": "captions",
+      "name": "Legendas — fala original",
+      "kind": "captions",
+      "clips": [
+        {
+          "id": "legendas-polemica",
+          "name": "Legendas — Não foi a tirzepatida que deu músculo",
+          "from": 0,
+          "duration": 351,
+          "words": [
+            {
+              "text": "Não",
+              "from": 0,
+              "to": 10
+            },
+            {
+              "text": "é",
+              "from": 10,
+              "to": 13
+            },
+            {
+              "text": "a",
+              "from": 13,
+              "to": 16
+            },
+            {
+              "text": "tirzepatida",
+              "from": 16,
+              "to": 37
+            },
+            {
+              "text": "que",
+              "from": 37,
+              "to": 42
+            },
+            {
+              "text": "deu",
+              "from": 42,
+              "to": 46
+            },
+            {
+              "text": "músculo,",
+              "from": 46,
+              "to": 63
+            },
+            {
+              "text": "né?",
+              "from": 68,
+              "to": 69
+            },
+            {
+              "text": "Eu",
+              "from": 72,
+              "to": 77
+            },
+            {
+              "text": "não",
+              "from": 77,
+              "to": 82
+            },
+            {
+              "text": "estou",
+              "from": 82,
+              "to": 86
+            },
+            {
+              "text": "com",
+              "from": 86,
+              "to": 89
+            },
+            {
+              "text": "shape",
+              "from": 89,
+              "to": 95
+            },
+            {
+              "text": "mounjarado.",
+              "from": 95,
+              "to": 119
+            },
+            {
+              "text": "O",
+              "from": 150,
+              "to": 158
+            },
+            {
+              "text": "que",
+              "from": 158,
+              "to": 159
+            },
+            {
+              "text": "que",
+              "from": 159,
+              "to": 161
+            },
+            {
+              "text": "as",
+              "from": 161,
+              "to": 163
+            },
+            {
+              "text": "pessoas",
+              "from": 163,
+              "to": 172
+            },
+            {
+              "text": "com",
+              "from": 172,
+              "to": 178
+            },
+            {
+              "text": "shape",
+              "from": 178,
+              "to": 185
+            },
+            {
+              "text": "mounjarado",
+              "from": 185,
+              "to": 203
+            },
+            {
+              "text": "ficam?",
+              "from": 203,
+              "to": 217
+            },
+            {
+              "text": "Pele",
+              "from": 267,
+              "to": 277
+            },
+            {
+              "text": "e",
+              "from": 277,
+              "to": 280
+            },
+            {
+              "text": "tudo",
+              "from": 280,
+              "to": 283
+            },
+            {
+              "text": "caindo,",
+              "from": 283,
+              "to": 298
+            },
+            {
+              "text": "sem",
+              "from": 311,
+              "to": 322
+            },
+            {
+              "text": "músculo",
+              "from": 322,
+              "to": 336
+            },
+            {
+              "text": "aí,",
+              "from": 336,
+              "to": 343
+            },
+            {
+              "text": "fã.",
+              "from": 344,
+              "to": 348
+            }
+          ],
+          "style": {
+            "preset": "karaoke",
+            "fontFamily": "Inter",
+            "fontSize": 62,
+            "fontWeight": 900,
+            "color": "#ffffff",
+            "highlight": "#ffd65a",
+            "position": "bottom",
+            "maxWordsPerLine": 5
+          },
+          "variants": {
+            "mobile": {
+              "style": {
+                "preset": "karaoke",
+                "fontFamily": "Inter",
+                "fontSize": 66,
+                "fontWeight": 900,
+                "color": "#ffffff",
+                "highlight": "#ffd65a",
+                "position": "bottom",
+                "maxWordsPerLine": 3
+              }
+            }
+          },
+          "note": "Palavras mapeadas pelo áudio da seleção; frases completas e mesmo trim do vídeo."
+        },
+        {
+          "id": "legendas-argumento",
+          "name": "Legendas — Hábitos e dedicação",
+          "from": 351,
+          "duration": 363,
+          "words": [
+            {
+              "text": "Eu",
+              "from": 4,
+              "to": 7
+            },
+            {
+              "text": "vi",
+              "from": 7,
+              "to": 10
+            },
+            {
+              "text": "um",
+              "from": 10,
+              "to": 17
+            },
+            {
+              "text": "comentário",
+              "from": 17,
+              "to": 32
+            },
+            {
+              "text": "falando:",
+              "from": 32,
+              "to": 38
+            },
+            {
+              "text": "o",
+              "from": 39,
+              "to": 42
+            },
+            {
+              "text": "que",
+              "from": 42,
+              "to": 43
+            },
+            {
+              "text": "que",
+              "from": 43,
+              "to": 46
+            },
+            {
+              "text": "a",
+              "from": 46,
+              "to": 47
+            },
+            {
+              "text": "tirzepatida",
+              "from": 47,
+              "to": 65
+            },
+            {
+              "text": "não",
+              "from": 65,
+              "to": 74
+            },
+            {
+              "text": "faz,",
+              "from": 74,
+              "to": 84
+            },
+            {
+              "text": "né?",
+              "from": 88,
+              "to": 92
+            },
+            {
+              "text": "Ela",
+              "from": 131,
+              "to": 139
+            },
+            {
+              "text": "muda",
+              "from": 139,
+              "to": 149
+            },
+            {
+              "text": "sim,",
+              "from": 149,
+              "to": 155
+            },
+            {
+              "text": "a",
+              "from": 161,
+              "to": 165
+            },
+            {
+              "text": "vontade",
+              "from": 165,
+              "to": 172
+            },
+            {
+              "text": "de",
+              "from": 172,
+              "to": 178
+            },
+            {
+              "text": "cê",
+              "from": 178,
+              "to": 180
+            },
+            {
+              "text": "comer",
+              "from": 180,
+              "to": 185
+            },
+            {
+              "text": "doce.",
+              "from": 185,
+              "to": 199
+            },
+            {
+              "text": "E",
+              "from": 238,
+              "to": 244
+            },
+            {
+              "text": "muda",
+              "from": 244,
+              "to": 252
+            },
+            {
+              "text": "sim,",
+              "from": 252,
+              "to": 259
+            },
+            {
+              "text": "o",
+              "from": 259,
+              "to": 263
+            },
+            {
+              "text": "hábito,",
+              "from": 263,
+              "to": 272
+            },
+            {
+              "text": "o",
+              "from": 274,
+              "to": 275
+            },
+            {
+              "text": "resto",
+              "from": 275,
+              "to": 279
+            },
+            {
+              "text": "é",
+              "from": 279,
+              "to": 283
+            },
+            {
+              "text": "você,",
+              "from": 283,
+              "to": 290
+            },
+            {
+              "text": "irmão.",
+              "from": 295,
+              "to": 301
+            },
+            {
+              "text": "É",
+              "from": 319,
+              "to": 326
+            },
+            {
+              "text": "dedicação",
+              "from": 326,
+              "to": 341
+            },
+            {
+              "text": "diária.",
+              "from": 341,
+              "to": 358
+            }
+          ],
+          "style": {
+            "preset": "karaoke",
+            "fontFamily": "Inter",
+            "fontSize": 62,
+            "fontWeight": 900,
+            "color": "#ffffff",
+            "highlight": "#ffd65a",
+            "position": "bottom",
+            "maxWordsPerLine": 5
+          },
+          "variants": {
+            "mobile": {
+              "style": {
+                "preset": "karaoke",
+                "fontFamily": "Inter",
+                "fontSize": 66,
+                "fontWeight": 900,
+                "color": "#ffffff",
+                "highlight": "#ffd65a",
+                "position": "bottom",
+                "maxWordsPerLine": 3
+              }
+            }
+          },
+          "note": "Palavras mapeadas pelo áudio da seleção; frases completas e mesmo trim do vídeo."
+        },
+        {
+          "id": "legendas-pergunta",
+          "name": "Legendas — E depois de parar?",
+          "from": 714,
+          "duration": 186,
+          "words": [
+            {
+              "text": "Será",
+              "from": 2,
+              "to": 8
+            },
+            {
+              "text": "que",
+              "from": 8,
+              "to": 13
+            },
+            {
+              "text": "depois",
+              "from": 13,
+              "to": 21
+            },
+            {
+              "text": "que",
+              "from": 21,
+              "to": 26
+            },
+            {
+              "text": "tirar",
+              "from": 26,
+              "to": 33
+            },
+            {
+              "text": "o",
+              "from": 33,
+              "to": 40
+            },
+            {
+              "text": "uso",
+              "from": 40,
+              "to": 43
+            },
+            {
+              "text": "da",
+              "from": 43,
+              "to": 46
+            },
+            {
+              "text": "tirzepatida,",
+              "from": 46,
+              "to": 65
+            },
+            {
+              "text": "a",
+              "from": 65,
+              "to": 68
+            },
+            {
+              "text": "gente",
+              "from": 68,
+              "to": 69
+            },
+            {
+              "text": "vai",
+              "from": 69,
+              "to": 73
+            },
+            {
+              "text": "manter",
+              "from": 73,
+              "to": 85
+            },
+            {
+              "text": "esse",
+              "from": 104,
+              "to": 110
+            },
+            {
+              "text": "foco",
+              "from": 110,
+              "to": 122
+            },
+            {
+              "text": "maluco,",
+              "from": 122,
+              "to": 137
+            },
+            {
+              "text": "bitolado?",
+              "from": 137,
+              "to": 158
+            }
+          ],
+          "style": {
+            "preset": "karaoke",
+            "fontFamily": "Inter",
+            "fontSize": 62,
+            "fontWeight": 900,
+            "color": "#ffffff",
+            "highlight": "#ffd65a",
+            "position": "bottom",
+            "maxWordsPerLine": 5
+          },
+          "variants": {
+            "mobile": {
+              "style": {
+                "preset": "karaoke",
+                "fontFamily": "Inter",
+                "fontSize": 66,
+                "fontWeight": 900,
+                "color": "#ffffff",
+                "highlight": "#ffd65a",
+                "position": "bottom",
+                "maxWordsPerLine": 3
+              }
+            }
+          },
+          "note": "Palavras mapeadas pelo áudio da seleção; frases completas e mesmo trim do vídeo."
+        }
+      ]
+    },
+    {
+      "id": "topic",
+      "name": "Tema — Tirzepatida",
+      "kind": "text",
+      "clips": [
+        {
+          "id": "topic",
+          "name": "Tirzepatida",
+          "from": 0,
+          "duration": 120,
+          "text": "TIRZEPATIDA",
+          "box": {
+            "x": 0.04,
+            "y": 0.045,
+            "width": 0.72,
+            "height": 0.055
+          },
+          "style": {
+            "fontFamily": "Inter",
+            "fontSize": 32,
+            "fontWeight": 900,
+            "color": "#ffd65a",
+            "align": "left",
+            "letterSpacing": 3,
+            "shadow": "0 3px 12px rgba(0,0,0,0.8)"
+          },
+          "exit": {
+            "preset": "fade",
+            "frames": 8
+          },
+          "variants": {
+            "mobile": {
+              "box": {
+                "x": 0.08,
+                "y": 0.17,
+                "width": 0.84,
+                "height": 0.06
+              },
+              "style": {
+                "fontFamily": "Inter",
+                "fontSize": 48,
+                "fontWeight": 900,
+                "color": "#ffd65a",
+                "align": "center",
+                "letterSpacing": 3,
+                "shadow": "0 3px 12px rgba(0,0,0,0.8)"
+              },
+              "exit": {
+                "preset": "none",
+                "frames": 0
+              }
+            }
+          }
+        },
+        {
+          "id": "topic-mobile-hold",
+          "name": "Tirzepatida — mobile",
+          "from": 120,
+          "duration": 780,
+          "text": "TIRZEPATIDA",
+          "box": {
+            "x": 0.04,
+            "y": 0.045,
+            "width": 0.72,
+            "height": 0.055
+          },
+          "style": {
+            "fontFamily": "Inter",
+            "fontSize": 32,
+            "fontWeight": 900,
+            "color": "#ffd65a",
+            "align": "left",
+            "letterSpacing": 3,
+            "shadow": "0 3px 12px rgba(0,0,0,0.8)"
+          },
+          "exit": {
+            "preset": "none",
+            "frames": 0
+          },
+          "variants": {
+            "mobile": {
+              "box": {
+                "x": 0.08,
+                "y": 0.17,
+                "width": 0.84,
+                "height": 0.06
+              },
+              "style": {
+                "fontFamily": "Inter",
+                "fontSize": 48,
+                "fontWeight": 900,
+                "color": "#ffd65a",
+                "align": "center",
+                "letterSpacing": 3,
+                "shadow": "0 3px 12px rgba(0,0,0,0.8)"
+              },
+              "exit": {
+                "preset": "none",
+                "frames": 0
+              },
+              "opacity": 1
+            }
+          },
+          "opacity": 0
+        }
+      ]
+    },
+    {
+      "id": "headline",
+      "name": "Título — Polêmica do shape",
+      "kind": "text",
+      "clips": [
+        {
+          "id": "headline",
+          "name": "A polêmica do shape",
+          "from": 0,
+          "duration": 120,
+          "text": "A POLÊMICA DO SHAPE",
+          "box": {
+            "x": 0.04,
+            "y": 0.1,
+            "width": 0.72,
+            "height": 0.08
+          },
+          "style": {
+            "fontFamily": "Inter",
+            "fontSize": 48,
+            "fontWeight": 900,
+            "color": "#ffffff",
+            "align": "left",
+            "shadow": "0 3px 12px rgba(0,0,0,0.8)"
+          },
+          "exit": {
+            "preset": "fade",
+            "frames": 8
+          },
+          "variants": {
+            "mobile": {
+              "box": {
+                "x": 0.06,
+                "y": 0.23,
+                "width": 0.88,
+                "height": 0.08
+              },
+              "style": {
+                "fontFamily": "Inter",
+                "fontSize": 58,
+                "fontWeight": 900,
+                "color": "#ffffff",
+                "align": "center",
+                "shadow": "0 3px 12px rgba(0,0,0,0.8)"
+              },
+              "exit": {
+                "preset": "none",
+                "frames": 0
+              }
+            }
+          }
+        },
+        {
+          "id": "headline-mobile-hold",
+          "name": "A polêmica do shape — mobile",
+          "from": 120,
+          "duration": 780,
+          "text": "A POLÊMICA DO SHAPE",
+          "box": {
+            "x": 0.04,
+            "y": 0.1,
+            "width": 0.72,
+            "height": 0.08
+          },
+          "style": {
+            "fontFamily": "Inter",
+            "fontSize": 48,
+            "fontWeight": 900,
+            "color": "#ffffff",
+            "align": "left",
+            "shadow": "0 3px 12px rgba(0,0,0,0.8)"
+          },
+          "exit": {
+            "preset": "none",
+            "frames": 0
+          },
+          "variants": {
+            "mobile": {
+              "box": {
+                "x": 0.06,
+                "y": 0.23,
+                "width": 0.88,
+                "height": 0.08
+              },
+              "style": {
+                "fontFamily": "Inter",
+                "fontSize": 58,
+                "fontWeight": 900,
+                "color": "#ffffff",
+                "align": "center",
+                "shadow": "0 3px 12px rgba(0,0,0,0.8)"
+              },
+              "exit": {
+                "preset": "none",
+                "frames": 0
+              },
+              "opacity": 1
+            }
+          },
+          "opacity": 0
+        }
+      ]
+    },
+    {
+      "id": "readability",
+      "name": "Contraste das legendas",
+      "kind": "scene",
+      "clips": [
+        {
+          "id": "caption-shade",
+          "name": "Gradiente de leitura",
+          "from": 0,
+          "duration": 900,
+          "scene": "Readability",
+          "props": {
+            "bottomStrength": 0.78,
+            "topStrength": 0.4
+          }
+        }
+      ]
+    },
+    {
+      "id": "footage",
+      "name": "Vídeo — seleção da polêmica",
+      "kind": "video",
+      "clips": [
+        {
+          "id": "video-polemica",
+          "name": "Não foi a tirzepatida que deu músculo",
+          "from": 0,
+          "duration": 351,
+          "src": "assets/RESULTADO DE 1 MES UTILIZANDO TIRZEPATIDA.mp4",
+          "trimStart": 11265,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "note": "Fonte 375.50–387.20 s; velocidade original; áudio sincronizado na faixa Fala."
+        },
+        {
+          "id": "video-argumento",
+          "name": "Hábitos e dedicação",
+          "from": 351,
+          "duration": 363,
+          "src": "assets/RESULTADO DE 1 MES UTILIZANDO TIRZEPATIDA.mp4",
+          "trimStart": 7380,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "note": "Fonte 246.00–258.10 s; velocidade original; áudio sincronizado na faixa Fala."
+        },
+        {
+          "id": "video-pergunta",
+          "name": "E depois de parar?",
+          "from": 714,
+          "duration": 186,
+          "src": "assets/RESULTADO DE 1 MES UTILIZANDO TIRZEPATIDA.mp4",
+          "trimStart": 8577,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "note": "Fonte 285.90–292.10 s; velocidade original; áudio sincronizado na faixa Fala."
+        }
+      ]
+    },
+    {
+      "id": "voice",
+      "name": "Fala original",
+      "kind": "audio",
+      "clips": [
+        {
+          "id": "voice-polemica",
+          "name": "Não foi a tirzepatida que deu músculo",
+          "from": 0,
+          "duration": 351,
+          "src": "assets/voice/tirzepatida-polemica.wav",
+          "trimStart": 0,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 2,
+          "fadeOut": 2,
+          "note": "Fala original normalizada em conjunto e separada nas mesmas emendas, sem mudar palavras ou velocidade. Fades de 2 frames nas margens."
+        },
+        {
+          "id": "voice-argumento",
+          "name": "Hábitos e dedicação",
+          "from": 351,
+          "duration": 363,
+          "src": "assets/voice/tirzepatida-argumento.wav",
+          "trimStart": 0,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 2,
+          "fadeOut": 2,
+          "note": "Fala original normalizada em conjunto e separada nas mesmas emendas, sem mudar palavras ou velocidade. Fades de 2 frames nas margens."
+        },
+        {
+          "id": "voice-pergunta",
+          "name": "E depois de parar?",
+          "from": 714,
+          "duration": 186,
+          "src": "assets/voice/tirzepatida-pergunta.wav",
+          "trimStart": 0,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 2,
+          "fadeOut": 6,
+          "note": "Fala original normalizada em conjunto e separada nas mesmas emendas, sem mudar palavras ou velocidade. Fades de 2 frames nas margens."
+        }
+      ]
+    }
+  ],
+  "markers": [
+    {
+      "id": "m-polemica",
+      "frame": 0,
+      "label": "Não foi a tirzepatida que deu músculo",
+      "kind": "section"
+    },
+    {
+      "id": "m-argumento",
+      "frame": 351,
+      "label": "Hábitos e dedicação",
+      "kind": "section"
+    },
+    {
+      "id": "m-pergunta",
+      "frame": 714,
+      "label": "E depois de parar?",
+      "kind": "section"
+    }
+  ]
+}

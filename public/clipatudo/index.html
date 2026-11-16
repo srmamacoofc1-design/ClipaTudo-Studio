@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipaTudo — Presets</title>
+<link rel="stylesheet" href="style.css">
+<script src="presets.js" defer></script>
+<script src="studio.js" defer></script>
+</head>
+<body>
+<header><a href="index.html" aria-label="ClipaTudo, início"><span class="mark">▶</span> Clipa<span class="accent">Tudo</span></a><span class="header-label">Estúdio de predefinições</span></header>
+<main>
+<section class="desk">
+<div class="monitor">
+  <div class="stage" id="stage">
+    <video id="clip" playsinline preload="auto" aria-label="Prévia do estilo"></video>
+    <img class="art" id="art" alt="">
+    <span class="arrow" aria-hidden="true">↓</span>
+    <div class="headline"><span id="top"></span><span id="bottom"></span></div>
+    <div id="flash" aria-hidden="true"></div>
+    <div class="captions" id="caption" aria-hidden="true"></div>
+    <img class="reference" id="reference" alt="Capa do projeto original no CapCut" hidden>
+  </div>
+  <div class="transport">
+    <button type="button" id="play" aria-label="Reproduzir">▶</button>
+    <input id="scrub" type="range" min="0" step=".033333" aria-label="Posição do vídeo">
+    <output id="time">0:00.00</output>
+    <button type="button" id="mute" aria-label="Silenciar" aria-pressed="false"><span aria-hidden="true">♪</span></button>
+  </div>
+  <p id="error" role="alert" hidden>Não foi possível abrir a prévia. Confira se a pasta de mídia está junto da página.</p>
+</div>
+<aside class="controls">
+  <p class="eyebrow">ClipaTudo</p>
+  <h1>Presets de corte</h1>
+  <p class="intro">Escolha um estilo e compare a prévia com a capa do projeto original.</p>
+  <div class="styles" role="group" aria-label="Predefinição">
+    <button type="button" data-style="toguro" aria-pressed="true">Toguro</button>
+    <button type="button" data-style="vinheteiro" aria-pressed="false">Vinheteiro</button>
+  </div>
+  <div class="details">
+    <span>9:16 · 30 fps</span><span id="duration"></span>
+  </div>
+  <fieldset>
+   <legend>Título do vídeo</legend>
+   <label>Linha amarela<input type="text" id="titleTop" maxlength="42"></label>
+   <label>Linha branca<input type="text" id="titleBottom" maxlength="42"></label>
+  </fieldset>
+  <label class="range">Altura da legenda <output id="captionValue"></output><input type="range" id="captionY" min="62" max="90" step=".1"></label>
+  <div class="actions">
+    <button type="button" id="save">Salvar ajustes</button>
+    <button type="button" id="reset">Restaurar preset</button>
+  </div>
+  <p id="status" role="status"></p>
+  <label class="switch"><input type="checkbox" id="compare"> Mostrar capa do CapCut</label>
+</aside>
+</section>
+</main>
+</body>
+</html>

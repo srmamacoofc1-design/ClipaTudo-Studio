@@ -1,0 +1,1026 @@
+import { mkdirSync, readFileSync, watch, writeFileSync, type FSWatcher } from "node:fs";
+import type { IncomingMessage, ServerResponse } from "node:http";
+import { isAbsolute, join } from "node:path";
+import { mingDevice, mingDir, setupMing } from "./voice/ming.js";
+import { callEditor, getEditorSession, sendToEditor, type BridgeExtension } from "../bridge.js";
+import { TranscriptionService, transcriptionSettings, saveTranscriptionKey, removeTranscriptionKey, preferTranscription } from "./transcription/service.js";
+import type { TranscriptionInput } from "./transcription/types.js";
+import { PACKAGE_VERSION } from "../config.js";
+import { generateMusic, musicOptions, type GenerateMusicInput } from "./music.js";
+import { debugLog } from "../log.js";
+import { buildProjectBundle, buildRenderEntrySource, type BundleState } from "./bundler.js";
+import { detectAgents, getAgent, type AgentInfo } from "./agents/index.js";
+import { ChatEngine } from "./chat.js";
+import { VideoCreation } from "./video-creation.js";
+import { handleStudioHttp } from "./http.js";
+import { ProxyStore } from "./proxies.js";
+import { forgetProject, sweepWorkspace } from "./housekeeping.js";
+import { pruneOldTools } from "./references.js";
+import { createCut, readCanvas } from "./canvas.js";
+import {
+  assertSlug,
+  createProject,
+  deleteProject,
+  listAssets,
+  listLibrary,
+  listProjects,
+  moveProjectToDate,
+  hashText,
+  projectDir,
+  readProjectState,
+  StudioError,
+  writeLayers,
+  writeProjectFile,
+  type CreateProjectInput,
+} from "./projects.js";
+import { inspectReference, installedBrowsers, ReferenceImports } from "./references.js";
+import { cancelLocalRender, localRenderSlug, runLocalRender } from "./render.js";
+import { importShare, shareProject } from "./share.js";
+import { openFile, openWebUrl, projectFile, revealFile } from "./reveal.js";
+import {
+  generateVoice,
+  listVoices,
+  removeKey,
+  saveKey,
+  setDefaultProvider,
+  voiceOptions,
+  voiceSettings,
+  type GenerateVoiceInput,
+  type VoiceProviderId,
+} from "./voice.js";
+import { studioMcpServer, type WorkspacePaths } from "./workspace.js";
+import { previewVoice } from "./voice/previews.js";
+import { ReleaseVideos } from "./release-video.js";
+import { listMcpFiles, readMcpFile, writeMcpFile, copyMcpFile, type McpFileScope } from "./mcp-files.js";
+import { deleteEditingStyle, saveEditingStyle } from "./editing-styles.js";
+import { PhoneTransfers } from "./phone.js";
+import { ReleaseBrowser } from "./release-browser.js";
+import { exportQuality } from "./export-quality.js";
+import { exportResolution } from "./export-resolution.js";
+import { cancelResize, resizeRender, resizeRunning, resizeSlug } from "./resize-render.js";
+
+/** The hosted studio page, plus `npm run dev` of this repo. More with --origin or AGENTCUT_ORIGINS. */
+export const STUDIO_APP_URL = "https://agentcut.synteq.app";
+export const DEFAULT_ALLOWED_ORIGINS = [STUDIO_APP_URL, "http://localhost:3000", "http://127.0.0.1:3000"];
+
+export interface StudioHostOptions {
+  paths: WorkspacePaths;
+  port: number;
+  allowedOrigins: string[];
+  allowBash: boolean;
+  /** Extra folders the agent may read (the app's repo, a media folder). */
+  addDirs?: string[];
+  /** Extra sites the agent's sandboxed shell may reach. */
+  shellDomains?: string[];
+  /** Agent used when the page doesn't pick one (an id from ./agents); else the first one installed. */
+  agent?: string;
+}
+
+interface PageSession {
+  workspace?: string;
+  activeProject?: string | null;
+  [key: string]: unknown;
+}
+
+function asRecord(value: unknown): Record<string, unknown> {
+  return value && typeof value === "object" ? (value as Record<string, unknown>) : {};
+}
+
+/** Housekeeping runs at start and this often after (./housekeeping.ts). */
+const HOUSEKEEPING_EVERY_MS = 6 * 60 * 60 * 1000;
+
+export class StudioHost implements BridgeExtension {
+  private mingInstall: Promise<void> | null = null;
+  readonly paths: WorkspacePaths;
+  private readonly options: StudioHostOptions;
+  private readonly bundles = new Map<string, BundleState>();
+  private readonly building = new Map<string, Promise<BundleState>>();
+  private readonly rebuildQueued = new Set<string>();
+  private readonly watched = new Set<string>();
+  private readonly timers = new Map<string, NodeJS.Timeout>();
+  private watcher: FSWatcher | null = null;
+  private libraryWatcher: FSWatcher | null = null;
+  private agents: Promise<AgentInfo[]> | null = null;
+  private pageSession: PageSession | null = null;
+  readonly chat: ChatEngine;
+  readonly videoCreation: VideoCreation;
+  readonly references: ReferenceImports;
+  readonly transcription: TranscriptionService;
+  readonly releases: ReleaseVideos;
+  readonly phones: PhoneTransfers;
+  private phoneBrowser: ReleaseBrowser | null = null;
+
+  constructor(options: StudioHostOptions) {
+    this.options = options;
+    this.paths = options.paths;
+    this.videoCreation = new VideoCreation(this.paths);
+    this.transcription = new TranscriptionService(this.paths, (method, params) => callEditor(method, params, { timeoutMs: 20 * 60_000 }), event => this.emit("studio.transcription", event));
+    this.chat = new ChatEngine({
+      paths: this.paths,
+      allowBash: options.allowBash,
+      emit: (event, data) => this.emit(event, data),
+      getAgents: () => this.getAgents(),
+      defaultAgent: () => this.defaultAgent(),
+      mcp: studioMcpServer(this.paths),
+      getPageContext: () => this.pageSession,
+      addDirs: options.addDirs ?? [],
+      shellDomains: options.shellDomains ?? [],
+    });
+    this.references = new ReferenceImports(
+      this.paths,
+      (job) => this.emit("studio.reference", job),
+      (slug) => this.emit("studio.assets", { slug }),
+    );
+    const editorOrigin = process.env.AGENTCUT_EDITOR_ORIGIN || STUDIO_APP_URL;
+    if (!this.isOriginAllowed(new URL(editorOrigin).origin)) throw new Error("The editor origin must be in the helper's allowed origins.");
+    this.releases = new ReleaseVideos({
+      paths: this.paths, editorOrigin, bridgePort: options.port,
+      headed: process.env.AGENTCUT_DEMO_HEADLESS !== "1",
+      runAgent: async (job, prompt) => { await this.chat.send(job.slug, prompt, {}, job.input.agent); },
+      cancelAgent: slug => { this.chat.dropQueued(slug); this.chat.cancel(slug); },
+      changed: job => {
+        this.emit("studio.release", job);
+        this.emit("studio.projects", { projects: listProjects(this.paths) });
+        this.emit("studio.assets", { slug: job.slug });
+      },
+      build: async slug => {
+        this.watchProject(slug);
+        const state = readProjectState(this.paths, slug);
+        if (state.issues.some(issue => issue.severity === "error")) throw new Error("The announcement project has validation errors.");
+        const bundle = await this.rebuild(slug);
+        if (!bundle.ok) throw new Error(bundle.errors.map(error => error.text).join("\n"));
+      },
+      open: async url => {
+        if (process.env.AGENTCUT_DEMO_NO_OPEN === "1") throw new Error("Editor opening is disabled for this unattended test.");
+        const project = new URL(url).searchParams.get("project");
+        if (project && getEditorSession()) {
+          try { await callEditor("studio_open_project", { project }, { timeoutMs: 15_000 }); return; } catch {}
+        }
+        await openWebUrl(url);
+      },
+    });
+    this.phones = new PhoneTransfers({
+      internal: this.paths.internal,
+      available: () => !this.chat.runningSlug() && !this.chat.queued().length && !localRenderSlug() && !resizeRunning(),
+      import: manifest => {
+        const imported = this.importFootage({ name: manifest.name, width: manifest.width, height: manifest.height, fps: 30, durationInFrames: Math.ceil(manifest.duration * 30), extension: manifest.extension });
+        return { slug: imported.slug, file: join(projectDir(this.paths, imported.slug), "assets", `footage.${manifest.extension}`) };
+      },
+      edit: (slug, prompt, signal) => this.editPhoneVideo(slug, prompt, editorOrigin, signal),
+      render: async (slug, editing) => (await this.renderLocal(slug, "", editing ? { resolution: editing.resolution, quality: "high" } : {})).absolutePath,
+      cancel: slug => { this.chat.dropQueued(slug); this.chat.cancel(slug); if (localRenderSlug() === slug) cancelLocalRender(); },
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // BridgeExtension
+
+  private proxyStore: ProxyStore | null = null;
+  private housekeepingTimer: ReturnType<typeof setInterval> | undefined;
+
+  isOriginAllowed(origin: string | undefined) {
+    if (!origin) return true; // local tools (curl, MCP server) send no Origin
+    return this.options.allowedOrigins.includes(origin.replace(/\/+$/, ""));
+  }
+
+  handleHttp(request: IncomingMessage, response: ServerResponse) {
+    return handleStudioHttp(request, response, {
+      paths: this.paths,
+      proxies: this.proxies(),
+      getBundle: (slug) => this.bundles.get(slug) ?? null,
+      ensureBundle: async (slug) => {
+        if (!this.bundles.has(slug)) await this.rebuild(slug);
+      },
+      onUploaded: (slug, rel) => this.emit("studio.assets", { slug, path: rel }),
+      importFootage: (input) => this.importFootage(input),
+    });
+  }
+
+  /**
+   * "Send to Agentcut" from the editor: a project sized to the footage, with the
+   * editor's subtitles as an editable captions clip. Two modes:
+   * - edited (default): the rendered edit on one Footage track.
+   * - raw: the untouched recordings, screen takes back to back on a Screen track and the
+   *   camera as a picture-in-picture clip on a Camera track, so the agent does the editing.
+   * The page uploads the files to the returned paths right after.
+   */
+  importFootage(input: Record<string, unknown>) {
+    const num = (value: unknown, fallback: number) => (typeof value === "number" && Number.isFinite(value) && value > 0 ? value : fallback);
+    const frames = (value: unknown) => (typeof value === "number" && Number.isFinite(value) ? Math.max(0, Math.round(value)) : 0);
+    const extension = (value: unknown) => (typeof value === "string" && /^[a-z0-9]{2,4}$/.test(value) ? value : "mp4");
+    const raw = input.mode === "raw";
+    const screens = raw ? (Array.isArray(input.screens) ? input.screens : []).map((s) => asRecord(s)) : [];
+    if (raw && !screens.length) throw new StudioError("No screen recording to import.", "bad_input");
+    const width = Math.round(num(input.width, 1920) / 2) * 2;
+    const height = Math.round(num(input.height, 1080) / 2) * 2;
+    const fps = Math.round(num(input.fps, 30));
+    const durationInFrames = Math.max(1, Math.round(num(input.durationInFrames, fps * 10)));
+    const vertical = height > width;
+    const variant = vertical ? "mobile" : "wide";
+    const fallbackName = raw ? "Raw takes from the editor" : "Footage from the editor";
+    const name = typeof input.name === "string" && input.name.trim() ? input.name.trim().slice(0, 80) : fallbackName;
+    const { slug } = createProject(this.paths, {
+      name,
+      fps,
+      durationInFrames,
+      variants: { [variant]: { width, height } },
+      defaultVariant: variant,
+      background: "#000000",
+    });
+    const words = (Array.isArray(input.words) ? input.words : [])
+      .map((w) => asRecord(w))
+      .filter((w) => typeof w.text === "string" && typeof w.from === "number" && typeof w.to === "number")
+      .map((w) => ({
+        text: String(w.text),
+        from: Math.max(0, Math.round(Number(w.from))),
+        to: Math.max(Math.round(Number(w.from)) + 1, Math.round(Number(w.to))),
+      }))
+      .filter((w) => w.from < durationInFrames);
+    // Clamp a clip to the project: starts inside it, at least one frame long.
+    const span = (from: unknown, duration: unknown) => {
+      const start = Math.min(frames(from), durationInFrames - 1);
+      return { from: start, duration: Math.max(1, Math.min(frames(duration) || durationInFrames, durationInFrames - start)) };
+    };
+    const tracks: unknown[] = [];
+    if (words.length) {
+      tracks.push({
+        id: "captions",
+        name: "Captions",
+        kind: "captions",
+        clips: [{ id: "captions", name: "Subtitles from the editor", from: 0, duration: durationInFrames, words }],
+      });
+    }
+    const seconds = (durationInFrames / fps).toFixed(1);
+    // Companion recordings come with `<video>.cursor.json` (uploaded by the page next to the video).
+    const cursorPathFor = (videoPath: string) => videoPath.replace(/\.[^./]+$/, "") + ".cursor.json";
+    const clickCount = (value: unknown) => frames(asRecord(value).clicks);
+    const captionsNote = words.length ? `\n- Subtitles: ${words.length} words on the Captions track (word timings in frames)` : "";
+    let notes: string;
+    let paths: { videoPath?: string; screenPaths?: string[]; cameraPath?: string };
+
+    if (raw) {
+      const screenPaths = screens.map((s, i) => `assets/screen${screens.length > 1 ? `-${i + 1}` : ""}.${extension(s.extension)}`);
+      const camera = input.camera ? asRecord(input.camera) : null;
+      const cameraPath = camera ? `assets/camera.${extension(camera.extension)}` : undefined;
+      if (camera && cameraPath) {
+        const box = asRecord(camera.box);
+        const unit = (value: unknown, fallback: number) =>
+          typeof value === "number" && Number.isFinite(value) ? Math.min(1, Math.max(0, value)) : fallback;
+        const radius = frames(camera.radius);
+        const trimStart = frames(camera.trimStart);
+        tracks.push({
+          id: "camera",
+          name: "Camera",
+          kind: "video",
+          clips: [
+            {
+              id: "camera",
+              name: "Camera",
+              ...span(camera.from, camera.duration),
+              src: cameraPath,
+              ...(trimStart ? { trimStart } : {}),
+              fit: "cover",
+              box: {
+                x: unit(box.x, 0.8),
+                y: unit(box.y, 0.75),
+                width: Math.max(0.01, unit(box.width, 0.15)),
+                height: Math.max(0.01, unit(box.height, 0.2)),
+              },
+              ...(radius ? { radius } : {}),
+              muted: true,
+            },
+          ],
+        });
+      }
+      tracks.push({
+        id: "screen",
+        name: "Screen",
+        kind: "video",
+        clips: screens.map((s, i) => {
+          const cursor = s.cursor ? asRecord(s.cursor) : null;
+          return {
+            id: `screen-${i + 1}`,
+            name: screens.length > 1 ? `Screen take ${i + 1}` : "Screen",
+            ...span(s.from, s.duration),
+            src: screenPaths[i],
+            fit: "contain",
+            // The recording has no pointer of its own: draw the recorded one. Otherwise keep
+            // the data linked (style hidden) so click effects are one switch away.
+            ...(cursor
+              ? {
+                  cursor:
+                    cursor.cursorInVideo === false
+                      ? { src: cursorPathFor(screenPaths[i]), style: "classic", clicks: true }
+                      : { src: cursorPathFor(screenPaths[i]), style: "hidden", clicks: false },
+                }
+              : {}),
+          };
+        }),
+      });
+      const cursorTakes = screens.flatMap((s, i) => (s.cursor ? [{ path: cursorPathFor(screenPaths[i]), cursor: asRecord(s.cursor) }] : []));
+      notes =
+        `# ${name}\n\nRaw takes sent from a video editor: nothing cut, zoomed or styled yet (${width}×${height}, ${seconds} s).\n` +
+        `- Screen: ${screenPaths.join(", ")} on the Screen track (back to back). Its audio is the user's voice.\n` +
+        (cameraPath
+          ? `- Camera: ${cameraPath} on the Camera track, a picture-in-picture box where the editor had it. Muted: the voice is on the screen recording.${camera?.mirrored ? " The user had it mirrored in the editor." : ""}\n`
+          : "") +
+        (words.length ? `- Subtitles: ${words.length} words on the Captions track, timed to the raw recording (word timings in frames)\n` : "") +
+        cursorTakes
+          .map(
+            ({ path, cursor }) =>
+              `- Cursor: ${path} (${clickCount(cursor)} clicks). ${
+                cursor.cursorInVideo === false
+                  ? "The recording has no pointer: the Screen clip draws this one (its \`cursor\` field)."
+                  : "The recording shows its own pointer; the Screen clip links the data with style hidden."
+              } See references/cursor.md.\n`,
+          )
+          .join("");
+      paths = { screenPaths, cameraPath };
+    } else {
+      const videoPath = `assets/footage.${extension(input.extension)}`;
+      tracks.push({
+        id: "footage",
+        name: "Footage",
+        kind: "video",
+        clips: [{ id: "footage", name: "Footage", from: 0, duration: durationInFrames, src: videoPath, fit: "contain" }],
+      });
+      notes =
+        `# ${name}\n\nFootage sent from a video editor (the edit as it was exported: ${width}×${height}, ${seconds} s).\n` +
+        `- Video: ${videoPath} on the Footage track${captionsNote}\n` +
+        (input.cursor
+          ? `- Clicks: ${cursorPathFor(videoPath)} (${clickCount(input.cursor)} clicks, timed to this edit; positions are on the original screen, not the edited frame). See references/cursor.md.\n`
+          : "");
+      paths = { videoPath };
+    }
+
+    const dir = projectDir(this.paths, slug);
+    writeFileSync(join(dir, "layers.json"), `${JSON.stringify({ version: 1, tracks, markers: [] }, null, 2)}\n`);
+    writeFileSync(join(dir, "notes.md"), notes);
+    this.emit("studio.projects", { projects: listProjects(this.paths) });
+    debugLog(`import: created ${slug} (${raw ? "raw" : "edited"}, ${width}x${height}, ${durationInFrames}f, ${words.length} words)`);
+    return { slug, ...paths };
+  }
+
+  onEditorChange(connected: boolean, session: unknown) {
+    const record = asRecord(session);
+    this.pageSession = connected && record.workspace === "studio" ? (record as PageSession) : null;
+    if (this.pageSession?.activeProject && typeof this.pageSession.activeProject === "string") {
+      this.watchProject(this.pageSession.activeProject);
+    }
+  }
+
+  async handlePageRequest(method: string, params: unknown): Promise<unknown> {
+    const p = asRecord(params);
+    switch (method) {
+      case "studio.render.resize": {
+        if (localRenderSlug()) throw new StudioError("Wait for the current render to finish before creating a smaller copy.", "busy");
+        const slug = assertSlug(p.slug);
+        const result = await resizeRender(this.paths, slug, String(p.path ?? ""), p.resolution, p.quality);
+        this.emit("studio.assets", { slug });
+        return result;
+      }
+      case "studio.phone.status": return this.phones.status();
+      case "studio.phone.connect": return this.phones.connect(String(p.api ?? ""));
+      case "studio.phone.disconnect": return this.phones.disconnect();
+      case "studio.editingStyles.delete": {
+        const result = deleteEditingStyle(this.paths, p.id);
+        this.emit("studio.library", {});
+        return result;
+      }
+      case "studio.release.list": return this.releases.list();
+      case "studio.release.status": return this.releases.get(String(p.job));
+      case "studio.release.resume": return this.releases.resume(String(p.job));
+      case "studio.release.cancel": return this.releases.cancel(String(p.job));
+      case "studio.info":
+        return this.info();
+      case "studio.canvas.read":
+        return readCanvas(this.paths, assertSlug(p.project));
+      case "studio.canvas.create": {
+        const result = await createCut(this.paths, p);
+        this.emit("studio.canvas.created", { project: p.project, slug: result.slug });
+        this.emit("studio.projects", { projects: listProjects(this.paths) });
+        return result;
+      }
+      case "studio.projects.list":
+        return listProjects(this.paths);
+      case "studio.projects.create": {
+        const created = createProject(this.paths, p as unknown as CreateProjectInput);
+        this.emit("studio.projects", { projects: listProjects(this.paths) });
+        return created;
+      }
+      case "studio.projects.move": {
+        const result = moveProjectToDate(this.paths, assertSlug(p.slug), p.date);
+        this.emit("studio.projects", { projects: listProjects(this.paths) });
+        return result;
+      }
+      case "studio.projects.delete":
+        return this.deleteProject(assertSlug(p.slug));
+      case "studio.project.snapshot":
+        return this.openProject(assertSlug(p.slug), true);
+      case "studio.project.open":
+        return this.openProject(assertSlug(p.slug));
+      case "studio.session":
+        // The page tells us which project is active, the playhead and the selection.
+        this.pageSession = { ...(this.pageSession ?? {}), ...p, workspace: "studio" };
+        if (typeof p.activeProject === "string") this.watchProject(p.activeProject);
+        return { ok: true };
+      case "studio.layers.write": {
+        const slug = assertSlug(p.slug);
+        const result = writeLayers(this.paths, slug, p.layers, typeof p.baseHash === "string" ? p.baseHash : null);
+        return result;
+      }
+      case "studio.project.write": {
+        const slug = assertSlug(p.slug);
+        return writeProjectFile(this.paths, slug, p.project);
+      }
+      case "studio.assets.list":
+        return {
+          assets: listAssets(this.paths, assertSlug(p.slug)),
+          library: listLibrary(this.paths),
+        };
+      case "studio.chat.send":
+        return this.chat.send(assertSlug(p.slug), String(p.text ?? ""), asRecord(p.context), p.agent, p.model, p.effort);
+      case "studio.chat.send_video":
+        return this.videoCreation.send(assertSlug(p.slug), String(p.text ?? ""), asRecord(p.context), p.newVideo,
+          (slug, text, context) => this.chat.send(slug, text, context, p.agent, p.model, p.effort)).then(result => {
+            if (result.slug !== p.slug) this.emit("studio.canvas.created", { project: p.slug, slug: result.slug });
+            this.emit("studio.projects", { projects: listProjects(this.paths) });
+            return result;
+          });
+      case "studio.chat.cancel":
+        return this.chat.cancel(assertSlug(p.slug));
+      case "studio.chat.queue.edit":
+        return this.chat.editQueued(assertSlug(p.slug), String(p.messageId ?? ""), String(p.text ?? ""));
+      case "studio.chat.queue.remove":
+        return this.chat.removeQueued(assertSlug(p.slug), String(p.messageId ?? ""));
+      case "studio.chat.queue.now":
+        return this.chat.sendQueuedNow(assertSlug(p.slug), String(p.messageId ?? ""));
+      case "studio.chat.reset":
+        return this.chat.reset(assertSlug(p.slug));
+      case "studio.chat.history":
+        return this.chat.history(assertSlug(p.slug));
+      case "studio.render.cancel":
+        return { cancelled: typeof p.slug === "string" && localRenderSlug() !== p.slug ? false : cancelLocalRender() };
+      case "studio.file.reveal":
+        await revealFile(projectFile(this.paths, assertSlug(p.slug), String(p.path ?? "")));
+        return { ok: true };
+      case "studio.file.open":
+        await openFile(projectFile(this.paths, assertSlug(p.slug), String(p.path ?? "")));
+        return { ok: true };
+      // Style Spy: the helper downloads the reference and samples its frames.
+      case "studio.reference.import":
+        return this.references.importUrl(p.slug, p.url, { id: p.id, browser: p.browser });
+      case "studio.reference.prepare":
+        return this.references.prepare(p.slug, p.path);
+      case "studio.reference.cancel":
+        return this.references.cancel(String(p.id ?? ""));
+      case "studio.reference.jobs":
+        return { jobs: this.references.list(assertSlug(p.slug)), browsers: installedBrowsers() };
+      case "studio.render.local":
+        return this.renderLocal(assertSlug(p.slug), String(p.variant ?? ""), p);
+      // Share links: upload the project encrypted, or bring a shared one in. Progress comes as
+      // studio.share events tagged with the page's `job` id.
+      case "studio.share.create": {
+        const slug = assertSlug(p.slug);
+        const job = String(p.job ?? "");
+        return shareProject(this.paths, slug, p.api, (progress) => this.emit("studio.share", { job, slug, ...progress }));
+      }
+      case "studio.share.import": {
+        const job = String(p.job ?? "");
+        const result = await importShare(this.paths, p, (progress) => this.emit("studio.share", { job, ...progress }));
+        this.emit("studio.projects", { projects: listProjects(this.paths) });
+        return result;
+      }
+      // Voice providers: the page sends a key once; it never comes back.
+      case "studio.transcription.settings": return { ...transcriptionSettings(), jobs: this.transcription.status() };
+      case "studio.transcription.saveKey": return saveTranscriptionKey(String(p.provider), p.key);
+      case "studio.transcription.removeKey": return removeTranscriptionKey(String(p.provider));
+      case "studio.transcription.setDefault": return preferTranscription(String(p.provider));
+      case "studio.transcription.cancel": return this.transcription.cancel(String(p.job));
+      case "studio.voice.settings":
+        return { ...voiceSettings(), mingDirectory: mingDir(), mingDevice: mingDevice(), mingInstalling: this.mingInstall !== null };
+      case "studio.voice.installMing": {
+        if (p.confirm !== true) throw new Error("Confirm the Ming download and space requirements first.");
+        if (this.mingInstall) throw new Error("Ming installation is already running. Wait, then refresh the voice list.");
+        if (typeof p.directory !== "string" || !isAbsolute(p.directory)) throw new Error("Enter a full folder path for Ming.");
+        if (p.device !== "cpu" && p.device !== "cuda") throw new Error("Choose CPU or NVIDIA GPU for Ming.");
+        this.mingInstall = setupMing(p.directory, console.log, p.device);
+        try { await this.mingInstall; return { installed: true }; }
+        finally { this.mingInstall = null; }
+      }
+      case "studio.voice.preview":
+        return previewVoice(String(p.provider), String(p.voice), typeof p.style === "string" ? p.style : "");
+      case "studio.voice.saveKey":
+        return saveKey(p.provider, p.key, Boolean(p.makeDefault));
+      case "studio.voice.removeKey":
+        return removeKey(p.provider);
+      case "studio.voice.setDefault":
+        return setDefaultProvider(p.provider);
+      case "studio.voice.voices":
+        return { voices: await listVoices(String(p.provider) as VoiceProviderId) };
+      case "studio.voice.generate": {
+        const slug = assertSlug(p.slug);
+        const result = await generateVoice(this.paths, slug, p as unknown as GenerateVoiceInput);
+        this.emit("studio.assets", { slug });
+        return result;
+      }
+      default:
+        throw new StudioError(`Unknown studio method "${method}".`, "unknown_method");
+    }
+  }
+
+  /** MCP tool calls the helper answers itself (files, not pixels). */
+  handleLocalCall(method: string, params: unknown): Promise<unknown> | undefined {
+    const p = asRecord(params);
+    const sources = (this.options.addDirs ?? []).map(path => ({ id: hashText(path), path }));
+    const sourceRoot = (id: unknown) => {
+      if (p.scope !== "source") return undefined;
+      const source = sources.find(source => source.id === id);
+      if (!source) throw new StudioError("Unknown source ID. Call agentcut_sources; only folders already configured with --add-dir can be read.", "bad_path");
+      return source.path;
+    };
+    switch (method) {
+      case "studio.local.release_create": return Promise.resolve().then(() => this.releases.create(p));
+      case "studio.local.sources": return Promise.resolve({ sources, note: "Read-only source folders configured with --add-dir. Hidden files are not exposed. MCP cannot add folders or write source files." });
+      case "studio.local.list_files": return Promise.resolve().then(() => listMcpFiles(this.paths, p.scope as McpFileScope, p.project as string | undefined ?? this.pageSession?.activeProject ?? undefined, p.path as string, p.offset as number, p.limit as number, sourceRoot(p.source)));
+      case "studio.local.read_file": return Promise.resolve().then(() => readMcpFile(this.paths, p.scope as McpFileScope, p.project as string | undefined ?? this.pageSession?.activeProject ?? undefined, String(p.path), sourceRoot(p.source)));
+      case "studio.local.write_file": return Promise.resolve().then(() => writeMcpFile(this.paths, assertSlug(p.project), String(p.path), String(p.content), p.baseHash as string | null));
+      case "studio.local.save_editing_style": return Promise.resolve().then(() => saveEditingStyle(this.paths, p));
+      case "studio.local.copy_file": return Promise.resolve().then(() => copyMcpFile(this.paths, p.scope as McpFileScope, p.sourceProject as string | undefined, String(p.source), assertSlug(p.project), String(p.destination), sourceRoot(p.sourceRoot)));
+      case "studio.local.release_status": return Promise.resolve().then(() => p.job ? this.releases.get(String(p.job)) : this.releases.list());
+      case "studio.local.release_browser": return this.releases.inspect(String(p.job), p.command);
+      case "studio.local.release_capture": return this.releases.capture(String(p.job), p.plan);
+      case "studio.local.release_pause": return Promise.resolve().then(() => this.releases.pause(String(p.job), String(p.detail)));
+      case "studio.local.release_resume": return this.releases.resume(String(p.job));
+      case "studio.local.release_cancel": return this.releases.cancel(String(p.job));
+      case "studio.local.transcription_options": return Promise.resolve({ ...transcriptionSettings(), jobs: this.transcription.status() });
+      case "studio.local.cancel_transcription": return Promise.resolve(this.transcription.cancel(String(p.job)));
+      case "studio.local.transcribe": return this.transcription.run(assertSlug(p.project ?? this.pageSession?.activeProject), p as unknown as TranscriptionInput);
+      case "studio.local.canvas_read": return this.handlePageRequest("studio.canvas.read", { ...p, project: p.project ?? this.pageSession?.activeProject });
+      case "studio.local.canvas_create": return this.handlePageRequest("studio.canvas.create", p);
+      case "studio.local.workspace":
+        return Promise.resolve(this.workspaceSummary());
+      case "studio.local.create_project":
+        return (async () => {
+          const created = createProject(this.paths, p as unknown as CreateProjectInput);
+          // The chat that asked for it follows the new project. The page follows too, but only if it
+          // shows that chat's project (`from`): elsewhere the user is busy with their own work.
+          const from = typeof p.fromProject === "string" ? p.fromProject : null;
+          if (from && this.chat.runningSlug() === from) this.chat.moveRunningTurn(created.slug);
+          this.emit("studio.projects", { projects: listProjects(this.paths) });
+          this.emit("studio.open", { slug: created.slug, from });
+          this.watchProject(created.slug);
+          return { ...created, dir: projectDir(this.paths, created.slug) };
+        })();
+      case "studio.local.voice_options":
+        return (async () => {
+          const options = voiceOptions();
+          if (typeof p.provider === "string") {
+            const voices = await listVoices(p.provider);
+            return { ...options, voices, [`${p.provider}Voices`]: voices.map((v) => ({ ...v })) };
+          }
+          return options;
+        })();
+      case "studio.local.music_options":
+        return Promise.resolve(musicOptions());
+      case "studio.local.generate_music":
+        return (async () => {
+          const slug = assertSlug(p.slug ?? this.pageSession?.activeProject);
+          const result = await generateMusic(this.paths, slug, p as unknown as GenerateMusicInput);
+          this.emit("studio.assets", { slug });
+          return result;
+        })();
+      case "studio.local.generate_voice":
+        return (async () => {
+          const slug = assertSlug(p.slug ?? this.pageSession?.activeProject);
+          const result = await generateVoice(this.paths, slug, p as unknown as GenerateVoiceInput);
+          this.emit("studio.assets", { slug });
+          return result;
+        })();
+      case "studio.local.inspect_reference":
+        return inspectReference(this.paths, assertSlug(p.slug ?? this.pageSession?.activeProject), p);
+      case "studio.local.import_reference":
+        return (async () => {
+          const slug = assertSlug(p.slug ?? this.pageSession?.activeProject);
+          // The agent never passes a browser login: that's the user's choice, in Style Spy.
+          const started = p.path ? this.references.prepare(slug, p.path) : this.references.importUrl(slug, p.url);
+          const job = await this.references.wait(started.id);
+          if (job?.stage !== "ready") {
+            const login = job?.error?.code === "login_required";
+            throw new StudioError(
+              `${job?.error?.message ?? "Import failed."}${login ? " Ask the user to open Style Spy and click \"Retry with my browser login\", or upload the video there." : ""}`,
+            );
+          }
+          return {
+            video: job.path,
+            reference: `${job.dir}/reference.json`,
+            sheet: job.sheet,
+            frameCount: job.frames?.length ?? 0,
+            next: "Read reference.json (cuts, shots, frames, strips), open the sheet, the frames of each distinct look and the motion strips, and transcribe the video before describing its style (see references/style-spy.md).",
+          };
+        })();
+      case "studio.local.project_state":
+        return (async () => {
+          const slug = assertSlug(p.slug);
+          this.watchProject(slug);
+          await this.rebuild(slug);
+          return this.projectStatus(slug);
+        })();
+      default:
+        return undefined;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+
+  start() {
+    this.phones.start();
+    try {
+      this.watcher = watch(this.paths.projects, { recursive: true }, (_event, filename) => {
+        if (!filename) return;
+        this.onProjectFileChange(String(filename));
+      });
+      this.watcher.on("error", (error) => debugLog(`studio watcher error ${error.message}`));
+    } catch (error) {
+      debugLog(`studio watcher failed ${(error as Error).message}`);
+    }
+    try {
+      this.libraryWatcher = watch(this.paths.library, { recursive: true }, () => {
+        this.debounce("library", () => this.emit("studio.library", {}), 200);
+      });
+    } catch {}
+    void this.getAgents();
+    this.housekeeping();
+    this.housekeepingTimer = setInterval(() => this.housekeeping(), HOUSEKEEPING_EVERY_MS);
+    this.housekeepingTimer.unref?.();
+  }
+
+  /** Keeps Agentcut's own caches and scratch bounded (./housekeeping.ts). */
+  private housekeeping() {
+    try {
+      sweepWorkspace(this.paths, { renderingSlug: localRenderSlug() });
+      this.proxies().sweep();
+      pruneOldTools();
+    } catch (error) {
+      debugLog(`housekeeping failed ${(error as Error).message}`);
+    }
+  }
+
+  private proxies() {
+    return (this.proxyStore ??= new ProxyStore(this.paths.internal));
+  }
+
+  async stop() {
+    cancelResize();
+    cancelLocalRender();
+    this.proxyStore?.close();
+    this.phones.stop();
+    await this.phoneBrowser?.close();
+    clearInterval(this.housekeepingTimer);
+    this.watcher?.close();
+    this.libraryWatcher?.close();
+    this.chat.cancelAll();
+    this.references.cancelAll();
+    this.transcription.close();
+    await this.releases.close();
+  }
+
+  emit(event: string, data: unknown) {
+    sendToEditor({ type: "studio.event", event, data });
+    if (event === "studio.chat") {
+      const p = asRecord(data);
+      if (p.kind === "done" && typeof p.slug === "string") this.releases?.agentStopped(p.slug, asRecord(p.message).error as string | undefined);
+    }
+  }
+
+  /** Every agent and whether it's installed (looked up once per helper run). */
+  getAgents() {
+    this.agents ??= Promise.resolve().then(detectAgents);
+    return this.agents;
+  }
+
+  async defaultAgent() {
+    const agents = await this.getAgents();
+    const wanted = this.options.agent;
+    if (wanted && getAgent(wanted)) return wanted;
+    return (agents.find((agent) => agent.found) ?? agents[0])?.id ?? null;
+  }
+
+  private debounce(key: string, run: () => void, ms: number) {
+    const existing = this.timers.get(key);
+    if (existing) clearTimeout(existing);
+    this.timers.set(
+      key,
+      setTimeout(() => {
+        this.timers.delete(key);
+        run();
+      }, ms),
+    );
+  }
+
+  private onProjectFileChange(filename: string) {
+    const parts = filename.split(/[\\/]/);
+    const slug = parts[0];
+    const rest = parts.slice(1).join("/");
+    // Shares unpacking (.incoming-*) and other hidden folders aren't projects.
+    if (slug?.startsWith(".")) return;
+    if (!slug || !rest) {
+      this.debounce("projects", () => this.emit("studio.projects", { projects: listProjects(this.paths) }), 150);
+      return;
+    }
+    if (rest.startsWith(".studio/") || rest.endsWith(".tmp")) return;
+    if (rest === "project.json" || rest === "layers.json") {
+      this.debounce(`${slug}:project`, () => {
+        this.emitProject(slug);
+        // Validation of layers depends on scenes; the bundle doesn't change.
+      }, 60);
+      if (rest === "project.json") {
+        this.debounce("projects", () => this.emit("studio.projects", { projects: listProjects(this.paths) }), 150);
+      }
+      return;
+    }
+    if (rest.startsWith("assets/") || rest.startsWith("renders/")) {
+      this.debounce(`${slug}:assets`, () => this.emit("studio.assets", { slug }), 150);
+      return;
+    }
+    if (/\.(tsx?|jsx?|json|svg|txt)$/.test(rest) && this.watched.has(slug)) {
+      this.debounce(`${slug}:bundle`, () => {
+        void this.rebuild(slug).then(() => this.emitProject(slug));
+      }, 80);
+    }
+  }
+
+  private emitProject(slug: string) {
+    try {
+      const state = readProjectState(this.paths, slug);
+      this.emit("studio.project", {
+        slug,
+        project: state.projectRaw,
+        layers: state.layersRaw,
+        layersHash: state.layersHash,
+        projectHash: state.projectHash,
+        issues: state.issues,
+        scenes: state.scenes,
+        projectValid: state.project !== null,
+        layersValid: state.layers !== null,
+      });
+    } catch (error) {
+      debugLog(`emitProject ${slug} failed ${(error as Error).message}`);
+    }
+  }
+
+  watchProject(slug: string) {
+    try {
+      assertSlug(slug);
+    } catch {
+      return;
+    }
+    if (this.watched.has(slug)) return;
+    this.watched.add(slug);
+    void this.rebuild(slug);
+  }
+
+  async rebuild(slug: string): Promise<BundleState> {
+    const inFlight = this.building.get(slug);
+    if (inFlight) {
+      this.rebuildQueued.add(slug);
+      return inFlight;
+    }
+    const promise = (async () => {
+      let state = await buildProjectBundle(this.paths, slug, this.bundles.get(slug));
+      this.bundles.set(slug, state);
+      while (this.rebuildQueued.has(slug)) {
+        this.rebuildQueued.delete(slug);
+        state = await buildProjectBundle(this.paths, slug, state);
+        this.bundles.set(slug, state);
+      }
+      this.emit("studio.bundle", this.bundleSummary(state));
+      return state;
+    })();
+    this.building.set(slug, promise);
+    try {
+      return await promise;
+    } finally {
+      this.building.delete(slug);
+    }
+  }
+
+  private bundleSummary(state: BundleState) {
+    return {
+      slug: state.slug,
+      revision: state.revision,
+      ok: state.ok,
+      hasCode: Boolean(state.code),
+      errors: state.errors,
+      warnings: state.warnings,
+      scenes: state.scenes,
+      builtAt: state.builtAt,
+      durationMs: state.durationMs,
+    };
+  }
+
+  private async openProject(slug: string, snapshot = false) {
+    this.watchProject(slug);
+    const bundle = snapshot
+      ? await (this.building.get(slug) ?? this.bundles.get(slug) ?? this.rebuild(slug))
+      : await this.rebuild(slug);
+    const state = readProjectState(this.paths, slug);
+    return {
+      slug,
+      project: state.projectRaw,
+      layers: state.layersRaw,
+      layersHash: state.layersHash,
+      projectHash: state.projectHash,
+      issues: state.issues,
+      scenes: state.scenes,
+      projectValid: state.project !== null,
+      layersValid: state.layers !== null,
+      bundle: this.bundleSummary(bundle),
+      assets: listAssets(this.paths, slug),
+      chat: this.chat.history(slug),
+      dir: state.dir,
+    };
+  }
+
+  /** Delete a project from disk (the page confirms first). Not while the agent works on it. */
+  private deleteProject(slug: string) {
+    if (resizeSlug() === slug) throw new StudioError("A smaller copy is being created in this project. Wait for it to finish before deleting the project.", "busy");
+    if (this.phones.isUsing(slug)) throw new StudioError("A phone job is using this project. Wait for it to finish, or remove the phone connection.", "busy");
+    if (localRenderSlug() === slug) {
+      throw new StudioError("A local render is using this project. Stop it first, then delete.", "busy");
+    }
+    if (this.releases.list().some(job => job.slug === slug && !["ready", "failed", "cancelled"].includes(job.stage))) {
+      throw new StudioError("A release video job is using this project. Cancel the video job first.", "busy");
+    }
+    if (this.chat.runningSlug() === slug) {
+      throw new StudioError("The agent is working on this project. Stop it first, then delete.", "busy");
+    }
+    this.chat.dropQueued(slug);
+    this.watched.delete(slug);
+    this.bundles.delete(slug);
+    for (const [key, timer] of this.timers) {
+      if (key.startsWith(`${slug}:`)) {
+        clearTimeout(timer);
+        this.timers.delete(key);
+      }
+    }
+    const result = deleteProject(this.paths, slug);
+    // What the helper made for it elsewhere: render links, and copies of its footage.
+    forgetProject(this.paths, slug);
+    try {
+      this.proxies().sweep();
+    } catch (error) {
+      // The project is already deleted; a later sweep can retry locked cache files.
+      debugLog(`Could not clean project copies: ${String(error)}`);
+    }
+    if (this.pageSession?.activeProject === slug) this.pageSession.activeProject = null;
+    this.emit("studio.projects", { projects: listProjects(this.paths) });
+    debugLog(`deleted project ${slug} (${result.bytes} bytes)`);
+    return result;
+  }
+
+  projectStatus(slug: string) {
+    const state = readProjectState(this.paths, slug);
+    const bundle = this.bundles.get(slug);
+    return {
+      slug,
+      dir: state.dir,
+      projectValid: state.project !== null,
+      layersValid: state.layers !== null,
+      issues: state.issues,
+      scenes: state.scenes,
+      bundle: bundle ? this.bundleSummary(bundle) : null,
+      durationInFrames: state.project?.durationInFrames ?? null,
+      fps: state.project?.fps ?? null,
+      variants: state.project?.variants ?? null,
+      tracks:
+        state.layers?.tracks.map((track) => ({
+          id: track.id,
+          name: track.name,
+          kind: track.kind,
+          clips: track.clips.length,
+        })) ?? null,
+    };
+  }
+
+  private workspaceSummary() {
+    const session = getEditorSession();
+    return {
+      version: PACKAGE_VERSION,
+      workspace: this.paths.root,
+      projectsDir: this.paths.projects,
+      libraryDir: this.paths.library,
+      projects: listProjects(this.paths),
+      page: this.pageSession ?? (session ? { workspace: asRecord(session).workspace } : null),
+    };
+  }
+
+  private async info() {
+    const agents = await this.getAgents();
+    const claude = agents.find((agent) => agent.id === "claude");
+    return {
+      version: PACKAGE_VERSION,
+      workspace: this.paths.root,
+      agents,
+      defaultAgent: await this.defaultAgent(),
+      // Pages from before agents were pluggable read this.
+      claude: claude ? { found: claude.found, path: claude.path, version: claude.version, error: claude.error } : null,
+      allowBash: this.options.allowBash,
+      projects: listProjects(this.paths),
+      bridgePort: this.options.port,
+      // What the page may rely on beyond the basics ("styles": project.json accepts a style;
+      // "drawing": chat context takes the pencil's strokes; "share": share links).
+      features: ["feature-launch", "chat-video-creation", "clip-canvas", "project-folders", "styles", "drawing", "share", "person-framing", "transcription-providers", "release-videos", "phone-transfer", "export-quality", "export-resolution", "export-4k", "resize-render"],
+    };
+  }
+
+  private async renderLocal(slug: string, variant: string, params: Record<string, unknown>) {
+    const chat = this.chat.history(slug);
+    if (("expectedProjectHash" in params || "expectedLayersHash" in params) && (chat.running || chat.messages.some(message => message.status === "queued"))) throw new StudioError("Wait for this video's edit to finish before exporting it.", "busy");
+    if (resizeRunning()) throw new StudioError("Wait for the smaller copy to finish before starting a render.", "busy");
+    const quality = exportQuality(params.quality);
+    const resolution = exportResolution(params.resolution);
+    if (typeof params.expectedBundleRevision === "number") {
+      await this.building.get(slug);
+      if (this.bundles.get(slug)?.revision !== params.expectedBundleRevision) throw new StudioError("The video code changed while preparing export. Review it before exporting.", "conflict");
+    }
+    const state = readProjectState(this.paths, slug);
+    if ((typeof params.expectedProjectHash === "string" && params.expectedProjectHash !== state.projectHash)
+      || (typeof params.expectedLayersHash === "string" && params.expectedLayersHash !== state.layersHash)) throw new StudioError("The video changed while preparing export. Review it before exporting.", "conflict");
+    if (!state.project) throw new StudioError("project.json is invalid; fix it before rendering.");
+    const chosen = variant || state.project.defaultVariant;
+    if (!state.project.variants[chosen]) throw new StudioError(`Unknown variant "${chosen}".`);
+    const entryPath = join(this.paths.render, `${slug}.render.tsx`);
+    mkdirSync(this.paths.render, { recursive: true });
+    writeFileSync(entryPath, buildRenderEntrySource(this.paths, slug, state.scenes));
+    const masterGain = typeof params.masterGain === "number" ? params.masterGain : 1;
+    return runLocalRender({
+      paths: this.paths,
+      slug,
+      variant: chosen,
+      entryPath,
+      port: this.options.port,
+      masterGain,
+      quality,
+      resolution,
+      project: state.project,
+      layers: state.layersRaw,
+      onProgress: (data) => this.emit("studio.render", { slug, variant: chosen, ...data }),
+    });
+  }
+
+  private async editPhoneVideo(slug: string, prompt: string, origin: string, signal: AbortSignal) {
+    const previous = asRecord(getEditorSession()).activeProject;
+    let owned: ReleaseBrowser | null = null;
+    try {
+      // First-use dependency installation can take several minutes. Complete it
+      // before a page request starts its much shorter response timeout.
+      const prepared = await this.rebuild(slug);
+      if (!prepared.ok) throw new Error(prepared.errors.map(error => error.text).join("\n"));
+      signal.throwIfAborted();
+      if (!getEditorSession()) {
+        owned = new ReleaseBrowser(`agentcut-phone-${this.options.port}`, join(this.paths.internal, "phone-browser"), false);
+        this.phoneBrowser = owned;
+        await owned.setup(() => {});
+        signal.throwIfAborted();
+        const url = new URL("/studio", origin); url.searchParams.set("project", slug); url.searchParams.set("helperPort", String(this.options.port));
+        await owned.command(["--args", "--disable-features=LocalNetworkAccessChecks", "open", url.toString()]);
+        const deadline = Date.now() + 90_000;
+        while (!getEditorSession()) {
+          signal.throwIfAborted();
+          if (Date.now() > deadline) throw new Error("The background studio could not connect to the helper.");
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+      }
+      const opened = await callEditor("studio_phone_open_project", { project: slug }, { timeoutMs: 120_000 }) as { opened?: boolean };
+      if (!opened?.opened) throw new Error("The phone project could not be opened in the studio.");
+      signal.throwIfAborted();
+      const sent = await this.chat.send(slug, `${prompt}\n\nThis is an automatic phone edit. The original video is in assets/. Complete the requested edit in this project. Do not ask for confirmation. Use the available media tools to check the result. Do not export: the helper will render and return the finished video after this turn. Before ending, write assets/phone-edit-result.json with {"status":"complete","summary":"what you changed"} only after the requested edit and checks succeed. If the request cannot be completed, write {"status":"failed","summary":"the reason"}. This file is required for the helper to return a result.`, { activeProject: slug });
+      const deadline = Date.now() + 45 * 60_000;
+      while (true) {
+        signal.throwIfAborted();
+        const history = this.chat.history(slug);
+        const index = history.messages.findIndex(message => message.id === sent.userMessageId);
+        const answer = history.messages.slice(index + 1).find(message => message.role === "assistant");
+        if (answer && answer.status !== "running") {
+          if (answer.status !== "done") throw new Error(answer.error ?? "The edit stopped before it was complete.");
+          break;
+        }
+        if (Date.now() > deadline) { this.chat.dropQueued(slug); this.chat.cancel(slug); throw new Error("The phone edit exceeded 45 minutes."); }
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+      const receipt = JSON.parse(readFileSync(join(projectDir(this.paths, slug), "assets", "phone-edit-result.json"), "utf8"));
+      if (receipt.status !== "complete") throw new Error(typeof receipt.summary === "string" ? receipt.summary : "The agent could not complete this edit.");
+      const state = readProjectState(this.paths, slug);
+      if (state.issues.some(issue => issue.severity === "error")) throw new Error("The edited project contains errors. Open it on your computer to continue.");
+      const bundle = await this.rebuild(slug);
+      if (!bundle.ok) throw new Error("The edited project could not be built.");
+    } finally {
+      if (owned) { await owned.close(); if (this.phoneBrowser === owned) this.phoneBrowser = null; }
+      else if (typeof previous === "string" && previous !== slug && this.pageSession?.activeProject === slug) {
+        try { await callEditor("studio_phone_open_project", { project: previous }, { timeoutMs: 10_000 }); } catch {}
+      }
+    }
+  }
+}
+

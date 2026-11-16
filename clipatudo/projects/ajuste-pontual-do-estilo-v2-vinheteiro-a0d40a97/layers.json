@@ -1,0 +1,3086 @@
+{
+  "version": 1,
+  "tracks": [
+    {
+      "id": "legendas",
+      "name": "Legendas · uma palavra por vez",
+      "kind": "scene",
+      "clips": [
+        {
+          "id": "legenda-01",
+          "name": "CÊS",
+          "from": 4,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "CÊS",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-02",
+          "name": "ESTÃO",
+          "from": 10,
+          "duration": 10,
+          "scene": "StyledText",
+          "props": {
+            "text": "ESTÃO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-03",
+          "name": "NA",
+          "from": 20,
+          "duration": 4,
+          "scene": "StyledText",
+          "props": {
+            "text": "NA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-04",
+          "name": "MERDA",
+          "from": 24,
+          "duration": 11,
+          "scene": "StyledText",
+          "props": {
+            "text": "MERDA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-05",
+          "name": "NO",
+          "from": 35,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "NO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-06",
+          "name": "BRASIL",
+          "from": 40,
+          "duration": 12,
+          "scene": "StyledText",
+          "props": {
+            "text": "BRASIL",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-07",
+          "name": "CÊS",
+          "from": 52,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "CÊS",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-08",
+          "name": "VÃO",
+          "from": 58,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "VÃO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-09",
+          "name": "PRO",
+          "from": 78,
+          "duration": 8,
+          "scene": "StyledText",
+          "props": {
+            "text": "PRO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-10",
+          "name": "ESTADOS",
+          "from": 86,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "ESTADOS",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-11",
+          "name": "UNIDOS",
+          "from": 92,
+          "duration": 12,
+          "scene": "StyledText",
+          "props": {
+            "text": "UNIDOS",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-12",
+          "name": "CÊ",
+          "from": 104,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "CÊ",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-13",
+          "name": "VAI",
+          "from": 109,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "VAI",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-14",
+          "name": "CONTINUAR",
+          "from": 114,
+          "duration": 10,
+          "scene": "StyledText",
+          "props": {
+            "text": "CONTINUAR",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-15",
+          "name": "NA",
+          "from": 124,
+          "duration": 3,
+          "scene": "StyledText",
+          "props": {
+            "text": "NA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-16",
+          "name": "MERDA",
+          "from": 127,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "MERDA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-17",
+          "name": "NÃO",
+          "from": 150,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "NÃO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-18",
+          "name": "ADIANTA",
+          "from": 156,
+          "duration": 10,
+          "scene": "StyledText",
+          "props": {
+            "text": "ADIANTA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-19",
+          "name": "CÊ",
+          "from": 166,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "CÊ",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-20",
+          "name": "TIRAR",
+          "from": 172,
+          "duration": 8,
+          "scene": "StyledText",
+          "props": {
+            "text": "TIRAR",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-21",
+          "name": "FOTO",
+          "from": 180,
+          "duration": 8,
+          "scene": "StyledText",
+          "props": {
+            "text": "FOTO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-22",
+          "name": "DA",
+          "from": 188,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "DA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-23",
+          "name": "CASINHA",
+          "from": 193,
+          "duration": 13,
+          "scene": "StyledText",
+          "props": {
+            "text": "CASINHA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-24",
+          "name": "BONITINHA",
+          "from": 206,
+          "duration": 13,
+          "scene": "StyledText",
+          "props": {
+            "text": "BONITINHA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-25",
+          "name": "AH",
+          "from": 224,
+          "duration": 7,
+          "scene": "StyledText",
+          "props": {
+            "text": "AH",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-26",
+          "name": "MEU",
+          "from": 231,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "MEU",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-27",
+          "name": "CARRO",
+          "from": 236,
+          "duration": 12,
+          "scene": "StyledText",
+          "props": {
+            "text": "CARRO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-28",
+          "name": "QUALQUER",
+          "from": 258,
+          "duration": 3,
+          "scene": "StyledText",
+          "props": {
+            "text": "QUALQUER",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "titulos",
+      "name": "Títulos editáveis · fonte original",
+      "kind": "scene",
+      "clips": [
+        {
+          "id": "titulo-1",
+          "name": "Título amarelo",
+          "from": 0,
+          "duration": 261,
+          "scene": "StyledText",
+          "props": {
+            "text": "VINHETEIRO SE SOLTOU",
+            "y": 0.3115800865800866,
+            "size": 68,
+            "color": "#f0ff00",
+            "font": "ClipaTituloV",
+            "stroke": 9
+          }
+        },
+        {
+          "id": "titulo-2",
+          "name": "Título branco",
+          "from": 0,
+          "duration": 261,
+          "scene": "StyledText",
+          "props": {
+            "text": "E TODO MUNDO RIU!",
+            "y": 0.3576839826839827,
+            "size": 79,
+            "color": "#ffffff",
+            "font": "ClipaTitulo",
+            "stroke": 9
+          }
+        }
+      ]
+    },
+    {
+      "id": "banner",
+      "name": "Seu banner original · PNG transparente",
+      "kind": "image",
+      "clips": [
+        {
+          "id": "banner-original",
+          "src": "assets/images/banner-original.png",
+          "from": 0,
+          "duration": 261,
+          "box": {
+            "x": 0,
+            "y": -0.058,
+            "width": 1,
+            "height": 1
+          },
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "arte",
+      "name": "Arte superior original",
+      "kind": "image",
+      "clips": [
+        {
+          "id": "arte-original",
+          "src": "assets/images/arte-original.png",
+          "from": 0,
+          "duration": 261,
+          "box": {
+            "x": -0.047348904728287566,
+            "y": -0.027045608363998802,
+            "width": 1.0946978094565751,
+            "height": 0.3461850877692369
+          },
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "video",
+      "name": "Vídeo · cortes e enquadramentos",
+      "kind": "video",
+      "clips": [
+        {
+          "id": "video-1",
+          "name": "Tomada 1",
+          "src": "assets/video/fonte-01.mp4",
+          "duration": 47,
+          "trimStart": 52,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": 0,
+            "y": 0.4,
+            "width": 1,
+            "height": 0.6
+          },
+          "note": "Mesma escala/composição da V2; rastreio relativo ao enquadramento existente. Ênfase original mantida.",
+          "from": 0,
+          "variants": {
+            "mobile": {
+              "framing": {
+                "crop": {
+                  "x": 0.6348416550627362,
+                  "y": 0.10447843294977886,
+                  "width": 0.29097409776695676,
+                  "height": 0.5517731039136365
+                },
+                "path": [
+                  {
+                    "seconds": 1.7333333333333334,
+                    "crop": {
+                      "x": 0.6348416550627362,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 1.7666666666666666,
+                    "crop": {
+                      "x": 0.6348416550627362,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 1.8,
+                    "crop": {
+                      "x": 0.6348416550627362,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 1.8333333333333333,
+                    "crop": {
+                      "x": 0.634841079507369,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 1.8666666666666667,
+                    "crop": {
+                      "x": 0.6347910061904228,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 1.9,
+                    "crop": {
+                      "x": 0.6347409328734768,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 1.9333333333333333,
+                    "crop": {
+                      "x": 0.634688607856901,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 1.9666666666666666,
+                    "crop": {
+                      "x": 0.6345405856060671,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2,
+                    "crop": {
+                      "x": 0.6343925633552331,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.033333333333333,
+                    "crop": {
+                      "x": 0.6342496453199451,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.066666666666667,
+                    "crop": {
+                      "x": 0.6342496453199451,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.1,
+                    "crop": {
+                      "x": 0.6342496453199451,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.1333333333333333,
+                    "crop": {
+                      "x": 0.6342348530481663,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.1666666666666665,
+                    "crop": {
+                      "x": 0.6339131211369777,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.2,
+                    "crop": {
+                      "x": 0.6335913892257891,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.2333333333333334,
+                    "crop": {
+                      "x": 0.6332851897301024,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.2666666666666666,
+                    "crop": {
+                      "x": 0.6332337218486486,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.3,
+                    "crop": {
+                      "x": 0.633182253967195,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.3333333333333335,
+                    "crop": {
+                      "x": 0.6330990088687385,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.3666666666666667,
+                    "crop": {
+                      "x": 0.6325867713407457,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.4,
+                    "crop": {
+                      "x": 0.6320745338127531,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.433333333333333,
+                    "crop": {
+                      "x": 0.6315716492108221,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.466666666666667,
+                    "crop": {
+                      "x": 0.6311756551924506,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.5,
+                    "crop": {
+                      "x": 0.630779661174079,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.533333333333333,
+                    "crop": {
+                      "x": 0.6303671208097257,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.566666666666667,
+                    "crop": {
+                      "x": 0.6297911852788016,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.6,
+                    "crop": {
+                      "x": 0.6292152497478777,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.6333333333333333,
+                    "crop": {
+                      "x": 0.6286669266682302,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.6666666666666665,
+                    "crop": {
+                      "x": 0.6283579114996442,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.7,
+                    "crop": {
+                      "x": 0.6280488963310581,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.7333333333333334,
+                    "crop": {
+                      "x": 0.6277563426235369,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.7666666666666666,
+                    "crop": {
+                      "x": 0.6275905421662131,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.8,
+                    "crop": {
+                      "x": 0.6274247417088893,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.8333333333333335,
+                    "crop": {
+                      "x": 0.627253338258727,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.8666666666666667,
+                    "crop": {
+                      "x": 0.6270432232216806,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.9,
+                    "crop": {
+                      "x": 0.6268331081846342,
+                      "y": 0.10447843294977886,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 2.933333333333333,
+                    "crop": {
+                      "x": 0.6266339014063469,
+                      "y": 0.104481653455911,
+                      "width": 0.29088426643776893,
+                      "height": 0.5516027570968064
+                    }
+                  },
+                  {
+                    "seconds": 2.966666666666667,
+                    "crop": {
+                      "x": 0.6264936583288918,
+                      "y": 0.10450251879857092,
+                      "width": 0.29030225808621785,
+                      "height": 0.5504990968153464
+                    }
+                  },
+                  {
+                    "seconds": 3,
+                    "crop": {
+                      "x": 0.6264958994003563,
+                      "y": 0.1045540491137502,
+                      "width": 0.28886489497739337,
+                      "height": 0.5477734304756497
+                    }
+                  },
+                  {
+                    "seconds": 3.033333333333333,
+                    "crop": {
+                      "x": 0.6267164290032184,
+                      "y": 0.10464417606663157,
+                      "width": 0.28635093486029234,
+                      "height": 0.5430062172165544
+                    }
+                  },
+                  {
+                    "seconds": 3.066666666666667,
+                    "crop": {
+                      "x": 0.6273195329623825,
+                      "y": 0.10477585396973857,
+                      "width": 0.28267797148883017,
+                      "height": 0.5360411903788187
+                    }
+                  },
+                  {
+                    "seconds": 3.1,
+                    "crop": {
+                      "x": 0.6281074841242748,
+                      "y": 0.10494752909907396,
+                      "width": 0.27788934373154156,
+                      "height": 0.5269605332983306
+                    }
+                  },
+                  {
+                    "seconds": 3.1333333333333333,
+                    "crop": {
+                      "x": 0.6290412186023093,
+                      "y": 0.1051539952083455,
+                      "width": 0.27213027224795355,
+                      "height": 0.5160396273738971
+                    }
+                  },
+                  {
+                    "seconds": 3.1666666666666665,
+                    "crop": {
+                      "x": 0.6300310051771298,
+                      "y": 0.10538751511984516,
+                      "width": 0.2656165743441511,
+                      "height": 0.5036877261637236
+                    }
+                  },
+                  {
+                    "seconds": 3.2,
+                    "crop": {
+                      "x": 0.631122894697823,
+                      "y": 0.10563901334429264,
+                      "width": 0.25860139757882544,
+                      "height": 0.4903848724457726
+                    }
+                  },
+                  {
+                    "seconds": 3.2333333333333334,
+                    "crop": {
+                      "x": 0.6322867353233553,
+                      "y": 0.10589915015307945,
+                      "width": 0.25134526008196517,
+                      "height": 0.47662508578505985
+                    }
+                  },
+                  {
+                    "seconds": 3.2666666666666666,
+                    "crop": {
+                      "x": 0.6335157546707869,
+                      "y": 0.10615914960074056,
+                      "width": 0.2440929540736951,
+                      "height": 0.46287256476197
+                    }
+                  }
+                ],
+                "before": null
+              }
+            }
+          }
+        },
+        {
+          "id": "video-2",
+          "name": "Tomada 2",
+          "src": "assets/video/fonte-01.mp4",
+          "duration": 31,
+          "trimStart": 99,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": 0,
+            "y": 0.4,
+            "width": 1,
+            "height": 0.6
+          },
+          "note": "Mesma escala/composição da V2; rastreio relativo ao enquadramento existente. Ênfase original mantida.",
+          "from": 47,
+          "variants": {
+            "mobile": {
+              "framing": {
+                "crop": {
+                  "x": 0.6347078362082416,
+                  "y": 0.10641133484253755,
+                  "width": 0.23705861395976863,
+                  "height": 0.44953337165704277
+                },
+                "path": [
+                  {
+                    "seconds": 3.3,
+                    "crop": {
+                      "x": 0.6347078362082416,
+                      "y": 0.10641133484253755,
+                      "width": 0.23705861395976863,
+                      "height": 0.44953337165704277
+                    }
+                  },
+                  {
+                    "seconds": 3.3333333333333335,
+                    "crop": {
+                      "x": 0.6361382829336821,
+                      "y": 0.10664939213565212,
+                      "width": 0.23041835240268296,
+                      "height": 0.4369414682599025
+                    }
+                  },
+                  {
+                    "seconds": 3.3666666666666667,
+                    "crop": {
+                      "x": 0.6390310888381717,
+                      "y": 0.10686842523619314,
+                      "width": 0.2243087429963815,
+                      "height": 0.425355838570916
+                    }
+                  },
+                  {
+                    "seconds": 3.4,
+                    "crop": {
+                      "x": 0.6421142579140533,
+                      "y": 0.10706487497006185,
+                      "width": 0.2188290637198459,
+                      "height": 0.41496474305393
+                    }
+                  },
+                  {
+                    "seconds": 3.433333333333333,
+                    "crop": {
+                      "x": 0.6449935613308274,
+                      "y": 0.10702625291110021,
+                      "width": 0.21404536941605917,
+                      "height": 0.40589344126304555
+                    }
+                  },
+                  {
+                    "seconds": 3.466666666666667,
+                    "crop": {
+                      "x": 0.6464816091678881,
+                      "y": 0.10602846243697173,
+                      "width": 0.20999485596658862,
+                      "height": 0.3982124676107162
+                    }
+                  },
+                  {
+                    "seconds": 3.5,
+                    "crop": {
+                      "x": 0.647819540698789,
+                      "y": 0.10491358785695197,
+                      "width": 0.20668940595768248,
+                      "height": 0.3919443550012349
+                    }
+                  },
+                  {
+                    "seconds": 3.533333333333333,
+                    "crop": {
+                      "x": 0.6488943251205083,
+                      "y": 0.10378664210291305,
+                      "width": 0.20411755501808865,
+                      "height": 0.387067363589857
+                    }
+                  },
+                  {
+                    "seconds": 3.566666666666667,
+                    "crop": {
+                      "x": 0.6493973284229185,
+                      "y": 0.10289618380078873,
+                      "width": 0.20224436081754169,
+                      "height": 0.38351523236511603
+                    }
+                  },
+                  {
+                    "seconds": 3.6,
+                    "crop": {
+                      "x": 0.649729104129065,
+                      "y": 0.10198642094803011,
+                      "width": 0.20100882155635147,
+                      "height": 0.38117228384019236
+                    }
+                  },
+                  {
+                    "seconds": 3.6333333333333333,
+                    "crop": {
+                      "x": 0.6499144341800626,
+                      "y": 0.10126812212929552,
+                      "width": 0.20031864879793745,
+                      "height": 0.3798635117946073
+                    }
+                  },
+                  {
+                    "seconds": 3.6666666666666665,
+                    "crop": {
+                      "x": 0.6499885976732125,
+                      "y": 0.10125834175861996,
+                      "width": 0.20004246248942803,
+                      "height": 0.3793397807206932
+                    }
+                  },
+                  {
+                    "seconds": 3.7,
+                    "crop": {
+                      "x": 0.6499999999999999,
+                      "y": 0.1012568380675476,
+                      "width": 0.2,
+                      "height": 0.37925925925925924
+                    }
+                  },
+                  {
+                    "seconds": 3.7333333333333334,
+                    "crop": {
+                      "x": 0.6498798076923076,
+                      "y": 0.1012568380675476,
+                      "width": 0.2,
+                      "height": 0.37925925925925924
+                    }
+                  },
+                  {
+                    "seconds": 3.7666666666666666,
+                    "crop": {
+                      "x": 0.649356971153846,
+                      "y": 0.1012568380675476,
+                      "width": 0.2,
+                      "height": 0.37925925925925924
+                    }
+                  },
+                  {
+                    "seconds": 3.8,
+                    "crop": {
+                      "x": 0.6488341346153846,
+                      "y": 0.1012568380675476,
+                      "width": 0.2,
+                      "height": 0.37925925925925924
+                    }
+                  },
+                  {
+                    "seconds": 3.8333333333333335,
+                    "crop": {
+                      "x": 0.6484375,
+                      "y": 0.1012568380675476,
+                      "width": 0.2,
+                      "height": 0.37925925925925924
+                    }
+                  },
+                  {
+                    "seconds": 3.8666666666666667,
+                    "crop": {
+                      "x": 0.6484375,
+                      "y": 0.1012568380675476,
+                      "width": 0.2,
+                      "height": 0.37925925925925924
+                    }
+                  },
+                  {
+                    "seconds": 3.9,
+                    "crop": {
+                      "x": 0.6484375,
+                      "y": 0.1012568380675476,
+                      "width": 0.2,
+                      "height": 0.37925925925925924
+                    }
+                  },
+                  {
+                    "seconds": 3.933333333333333,
+                    "crop": {
+                      "x": 0.6484375,
+                      "y": 0.1012568380675476,
+                      "width": 0.2,
+                      "height": 0.37925925925925924
+                    }
+                  },
+                  {
+                    "seconds": 3.966666666666667,
+                    "crop": {
+                      "x": 0.6484604146605213,
+                      "y": 0.10126767299389106,
+                      "width": 0.20004246248942803,
+                      "height": 0.37933978072069313
+                    }
+                  },
+                  {
+                    "seconds": 4,
+                    "crop": {
+                      "x": 0.6486094571586263,
+                      "y": 0.10133814597722493,
+                      "width": 0.20031864879793754,
+                      "height": 0.3798635117946074
+                    }
+                  },
+                  {
+                    "seconds": 4.033333333333333,
+                    "crop": {
+                      "x": 0.6491185936856327,
+                      "y": 0.10150095378564049,
+                      "width": 0.20100882155635147,
+                      "height": 0.38117228384019236
+                    }
+                  },
+                  {
+                    "seconds": 4.066666666666666,
+                    "crop": {
+                      "x": 0.6502934067690178,
+                      "y": 0.10176678504000426,
+                      "width": 0.20224436081754166,
+                      "height": 0.38351523236511603
+                    }
+                  },
+                  {
+                    "seconds": 4.1,
+                    "crop": {
+                      "x": 0.6517898273495583,
+                      "y": 0.10219751252866197,
+                      "width": 0.2041175550180887,
+                      "height": 0.38706736358985705
+                    }
+                  },
+                  {
+                    "seconds": 4.133333333333334,
+                    "crop": {
+                      "x": 0.6538958870186191,
+                      "y": 0.10282288467783099,
+                      "width": 0.20668940595768248,
+                      "height": 0.391944355001235
+                    }
+                  },
+                  {
+                    "seconds": 4.166666666666667,
+                    "crop": {
+                      "x": 0.6570033481233876,
+                      "y": 0.10367184262035482,
+                      "width": 0.20999485596658862,
+                      "height": 0.39821246761071616
+                    }
+                  },
+                  {
+                    "seconds": 4.2,
+                    "crop": {
+                      "x": 0.6603568664632024,
+                      "y": 0.10471215953785847,
+                      "width": 0.21404536941605917,
+                      "height": 0.40589344126304555
+                    }
+                  },
+                  {
+                    "seconds": 4.233333333333333,
+                    "crop": {
+                      "x": 0.6635549327119625,
+                      "y": 0.10594078355663457,
+                      "width": 0.2188290637198459,
+                      "height": 0.41496474305393
+                    }
+                  },
+                  {
+                    "seconds": 4.266666666666667,
+                    "crop": {
+                      "x": 0.6661355542442272,
+                      "y": 0.10734816144217628,
+                      "width": 0.2243087429963815,
+                      "height": 0.425355838570916
+                    }
+                  },
+                  {
+                    "seconds": 4.3,
+                    "crop": {
+                      "x": 0.6690128375288789,
+                      "y": 0.10891732794514038,
+                      "width": 0.23041835240268294,
+                      "height": 0.4369414682599025
+                    }
+                  }
+                ],
+                "before": null
+              }
+            }
+          }
+        },
+        {
+          "id": "video-3",
+          "name": "Tomada 3",
+          "src": "assets/video/fonte-01.mp4",
+          "duration": 183,
+          "trimStart": 130,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": 0,
+            "y": 0.4,
+            "width": 1,
+            "height": 0.6
+          },
+          "note": "Mesma escala/composição da V2; rastreio relativo ao enquadramento existente. Ênfase original mantida.",
+          "from": 78,
+          "variants": {
+            "mobile": {
+              "framing": {
+                "crop": {
+                  "x": 0.6721400282072569,
+                  "y": 0.1106227849250174,
+                  "width": 0.23705861395976863,
+                  "height": 0.44953337165704277
+                },
+                "path": [
+                  {
+                    "seconds": 4.333333333333333,
+                    "crop": {
+                      "x": 0.6721400282072569,
+                      "y": 0.1106227849250174,
+                      "width": 0.23705861395976863,
+                      "height": 0.44953337165704277
+                    }
+                  },
+                  {
+                    "seconds": 4.366666666666666,
+                    "crop": {
+                      "x": 0.6754528077783176,
+                      "y": 0.11242945539168352,
+                      "width": 0.2440929540736951,
+                      "height": 0.46287256476197
+                    }
+                  },
+                  {
+                    "seconds": 4.4,
+                    "crop": {
+                      "x": 0.6788682370578476,
+                      "y": 0.11429210730617172,
+                      "width": 0.25134526008196517,
+                      "height": 0.47662508578505985
+                    }
+                  },
+                  {
+                    "seconds": 4.433333333333334,
+                    "crop": {
+                      "x": 0.6822854707535592,
+                      "y": 0.11615574328414952,
+                      "width": 0.25860139757882544,
+                      "height": 0.4903848724457726
+                    }
+                  },
+                  {
+                    "seconds": 4.466666666666667,
+                    "crop": {
+                      "x": 0.685589225462482,
+                      "y": 0.11795749191658543,
+                      "width": 0.2656165743441511,
+                      "height": 0.5036877261637236
+                    }
+                  },
+                  {
+                    "seconds": 4.5,
+                    "crop": {
+                      "x": 0.688656811760315,
+                      "y": 0.11963044281759266,
+                      "width": 0.27213027224795355,
+                      "height": 0.5160396273738971
+                    }
+                  },
+                  {
+                    "seconds": 4.533333333333333,
+                    "crop": {
+                      "x": 0.6913690113483526,
+                      "y": 0.12134940287450807,
+                      "width": 0.2778893437315415,
+                      "height": 0.5269605332983306
+                    }
+                  },
+                  {
+                    "seconds": 4.566666666666666,
+                    "crop": {
+                      "x": 0.6936241863826609,
+                      "y": 0.12338501939572143,
+                      "width": 0.2826779714888302,
+                      "height": 0.5360411903788188
+                    }
+                  },
+                  {
+                    "seconds": 4.6,
+                    "crop": {
+                      "x": 0.6953539460794012,
+                      "y": 0.12520093673430518,
+                      "width": 0.28635093486029234,
+                      "height": 0.5430062172165543
+                    }
+                  },
+                  {
+                    "seconds": 4.633333333333334,
+                    "crop": {
+                      "x": 0.6965378802627804,
+                      "y": 0.12648102428994468,
+                      "width": 0.28886489497739337,
+                      "height": 0.5477734304756496
+                    }
+                  },
+                  {
+                    "seconds": 4.666666666666667,
+                    "crop": {
+                      "x": 0.6972147976517594,
+                      "y": 0.12692741571254681,
+                      "width": 0.29030225808621796,
+                      "height": 0.5504990968153466
+                    }
+                  },
+                  {
+                    "seconds": 4.7,
+                    "crop": {
+                      "x": 0.6974888909349927,
+                      "y": 0.12713001568083038,
+                      "width": 0.2908842664377689,
+                      "height": 0.5516027570968063
+                    }
+                  },
+                  {
+                    "seconds": 4.733333333333333,
+                    "crop": {
+                      "x": 0.6975311964515521,
+                      "y": 0.12717946058353408,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 4.766666666666667,
+                    "crop": {
+                      "x": 0.6975311964515521,
+                      "y": 0.12717946058353408,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 4.8,
+                    "crop": {
+                      "x": 0.6975311964515521,
+                      "y": 0.12717946058353408,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 4.833333333333333,
+                    "crop": {
+                      "x": 0.6975311964515521,
+                      "y": 0.12717946058353408,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 4.866666666666666,
+                    "crop": {
+                      "x": 0.6975311964515521,
+                      "y": 0.12717946058353408,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 4.9,
+                    "crop": {
+                      "x": 0.6975311964515521,
+                      "y": 0.12717946058353408,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 4.933333333333334,
+                    "crop": {
+                      "x": 0.6974236526645534,
+                      "y": 0.12782039083750926,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 4.966666666666667,
+                    "crop": {
+                      "x": 0.6971312679936511,
+                      "y": 0.12956291996550437,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5,
+                    "crop": {
+                      "x": 0.6968388833227488,
+                      "y": 0.1313054490934994,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.033333333333333,
+                    "crop": {
+                      "x": 0.6966574031821888,
+                      "y": 0.13265995428588823,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.066666666666666,
+                    "crop": {
+                      "x": 0.6966574031821888,
+                      "y": 0.13337951122001224,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.1,
+                    "crop": {
+                      "x": 0.6966574031821888,
+                      "y": 0.13409906815413628,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.133333333333334,
+                    "crop": {
+                      "x": 0.6966574031821888,
+                      "y": 0.13453741893009685,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.166666666666667,
+                    "crop": {
+                      "x": 0.6966574031821888,
+                      "y": 0.13453741893009685,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.2,
+                    "crop": {
+                      "x": 0.6966574031821888,
+                      "y": 0.13453741893009685,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.233333333333333,
+                    "crop": {
+                      "x": 0.6966574031821888,
+                      "y": 0.13453741893009685,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.266666666666667,
+                    "crop": {
+                      "x": 0.6966574031821888,
+                      "y": 0.13453741893009685,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.3,
+                    "crop": {
+                      "x": 0.6966574031821888,
+                      "y": 0.13453741893009685,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.333333333333333,
+                    "crop": {
+                      "x": 0.6960911545388632,
+                      "y": 0.13460804786971217,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.366666666666666,
+                    "crop": {
+                      "x": 0.6947227203174932,
+                      "y": 0.1347787344737826,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.4,
+                    "crop": {
+                      "x": 0.6933542860961229,
+                      "y": 0.134949421077853,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.433333333333334,
+                    "crop": {
+                      "x": 0.6920494686354968,
+                      "y": 0.13504751682731883,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.466666666666667,
+                    "crop": {
+                      "x": 0.6908306197704707,
+                      "y": 0.13504751682731883,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.5,
+                    "crop": {
+                      "x": 0.6896117709054445,
+                      "y": 0.13504751682731883,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.533333333333333,
+                    "crop": {
+                      "x": 0.6884808963690201,
+                      "y": 0.13498575404330493,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.566666666666666,
+                    "crop": {
+                      "x": 0.6874634624142137,
+                      "y": 0.1348443497746417,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.6,
+                    "crop": {
+                      "x": 0.6864460284594075,
+                      "y": 0.13470294550597842,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.633333333333334,
+                    "crop": {
+                      "x": 0.6858029058215686,
+                      "y": 0.1339150465140757,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.666666666666667,
+                    "crop": {
+                      "x": 0.6856204740353815,
+                      "y": 0.13233146170895535,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.7,
+                    "crop": {
+                      "x": 0.6854380422491946,
+                      "y": 0.130747876903835,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.733333333333333,
+                    "crop": {
+                      "x": 0.6853394871463121,
+                      "y": 0.12920464020335287,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.766666666666667,
+                    "crop": {
+                      "x": 0.6853394871463121,
+                      "y": 0.12770881252582061,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.8,
+                    "crop": {
+                      "x": 0.6853394871463121,
+                      "y": 0.12621298484828838,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.833333333333333,
+                    "crop": {
+                      "x": 0.6857402284796431,
+                      "y": 0.1246378423188765,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.866666666666666,
+                    "crop": {
+                      "x": 0.6865905820406143,
+                      "y": 0.12297371239467292,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.9,
+                    "crop": {
+                      "x": 0.6874409356015851,
+                      "y": 0.12130958247046923,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.933333333333334,
+                    "crop": {
+                      "x": 0.6885689451612531,
+                      "y": 0.11918593722635676,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 5.966666666666667,
+                    "crop": {
+                      "x": 0.689994443290953,
+                      "y": 0.1165699541394848,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6,
+                    "crop": {
+                      "x": 0.6914199414206531,
+                      "y": 0.11395397105261285,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.033333333333333,
+                    "crop": {
+                      "x": 0.692818316806625,
+                      "y": 0.11225658400776357,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.066666666666666,
+                    "crop": {
+                      "x": 0.6941889386873867,
+                      "y": 0.11149915570358848,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.1,
+                    "crop": {
+                      "x": 0.6955595605681485,
+                      "y": 0.11074172739941343,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.133333333333334,
+                    "crop": {
+                      "x": 0.6967927431812422,
+                      "y": 0.10983503821674404,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.166666666666667,
+                    "crop": {
+                      "x": 0.6978916101463873,
+                      "y": 0.10878248044827332,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.2,
+                    "crop": {
+                      "x": 0.6989904771115325,
+                      "y": 0.10772992267980266,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.233333333333333,
+                    "crop": {
+                      "x": 0.6999512590720507,
+                      "y": 0.10670686717729226,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.266666666666667,
+                    "crop": {
+                      "x": 0.7007831616949172,
+                      "y": 0.10571134712301147,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.3,
+                    "crop": {
+                      "x": 0.7016150643177835,
+                      "y": 0.10471582706873064,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.333333333333333,
+                    "crop": {
+                      "x": 0.7024352910665295,
+                      "y": 0.10385037130309592,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.366666666666666,
+                    "crop": {
+                      "x": 0.7032451110579067,
+                      "y": 0.10310084240342833,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.4,
+                    "crop": {
+                      "x": 0.704054931049284,
+                      "y": 0.1023513135037607,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.433333333333334,
+                    "crop": {
+                      "x": 0.7051201578942553,
+                      "y": 0.10120765112601178,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.466666666666667,
+                    "crop": {
+                      "x": 0.7064027522742002,
+                      "y": 0.09972855600095969,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.5,
+                    "crop": {
+                      "x": 0.7076853466541453,
+                      "y": 0.09824946087590754,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.533333333333333,
+                    "crop": {
+                      "x": 0.708401644197508,
+                      "y": 0.09679206552118871,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.566666666666666,
+                    "crop": {
+                      "x": 0.7086578255611473,
+                      "y": 0.09535230122986563,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.6,
+                    "crop": {
+                      "x": 0.7089140069247868,
+                      "y": 0.09391253693854254,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.633333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.09260596851443444,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.666666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.09140269484449305,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.7,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.09019942117455172,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.733333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.08919285765666954,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.766666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.08833185965131102,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.8,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.08747086164595262,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.833333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.0859599471804529,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.866666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.08399026815485351,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.9,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.08202058912925408,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.933333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.079695363421876,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 6.966666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.07713082744791612,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.07456629147395626,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.033333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.07233217341553907,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.066666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.0703100215670927,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.1,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06828786971864634,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.133333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06698110293081137,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.166666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06611151590223895,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.2,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06524192887366652,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.233333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06462712125263109,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.266666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.0641605489232536,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.3,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06369397659387609,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.333333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.0635277266834082,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.366666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.0635277266834082,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.4,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.0635277266834082,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.433333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06350482902997756,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.466666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06346987998000454,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.5,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06343493093003152,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.533333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06342328124670717,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.566666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06342328124670717,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.6,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06342328124670717,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.633333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.0629723616491255,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.666666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06230744631031863,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.7,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06164253097151181,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.733333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.060298878600257795,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.766666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05864979456440251,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.8,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05700071052854728,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.833333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.866666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.9,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.933333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 7.966666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.033333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.066666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.1,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.133333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.166666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.2,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.056507880816682475,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.233333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05600773983838462,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.266666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.055338320375124386,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.3,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.0546689009118642,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.333333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.366666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.4,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.433333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.466666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.5,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.533333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.566666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.6,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.633333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.666666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.7,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.733333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.766666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.8,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.833333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.866666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.9,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.933333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 8.966666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.033333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.066666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.1,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.133333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.166666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.2,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.233333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.266666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.3,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.333333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.366666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.4,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.433333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.466666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.5,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.533333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.566666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.6,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.633333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.666666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.7,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.733333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.766666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.8,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05450731690349101,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.833333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05499143192788464,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.866666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.055511407324455544,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.9,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05603138272102651,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.933333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05606126636450757,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 9.966666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05606126636450757,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05606126636450757,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.033333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05606126636450757,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.066666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05606126636450757,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.1,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05606126636450757,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.133333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05606126636450757,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.166666666666666,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05606126636450757,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.2,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05606126636450757,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.233333333333333,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05696515212865343,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.266666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05789030579313211,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.3,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.05881545945761079,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.333333333333334,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.060381334870163506,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.366666666666667,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06195466053560081,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  },
+                  {
+                    "seconds": 10.4,
+                    "crop": {
+                      "x": 0.7090259022330432,
+                      "y": 0.06352798620103796,
+                      "width": 0.29097409776695676,
+                      "height": 0.5517731039136365
+                    }
+                  }
+                ],
+                "before": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "fala",
+      "name": "Fala original · cortes separados",
+      "kind": "audio",
+      "clips": [
+        {
+          "id": "fala-1",
+          "name": "Fala · tomada 1",
+          "src": "assets/voice/fala-01.wav",
+          "from": 0,
+          "duration": 47,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 1,
+          "fadeOut": 1
+        },
+        {
+          "id": "fala-2",
+          "name": "Fala · tomada 2",
+          "src": "assets/voice/fala-02.wav",
+          "from": 47,
+          "duration": 31,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 1,
+          "fadeOut": 1
+        },
+        {
+          "id": "fala-3",
+          "name": "Fala · tomada 3",
+          "src": "assets/voice/fala-03.wav",
+          "from": 78,
+          "duration": 183,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 1,
+          "fadeOut": 1
+        }
+      ]
+    },
+    {
+      "id": "musica",
+      "name": "Música original",
+      "kind": "audio",
+      "clips": [
+        {
+          "id": "musica-2",
+          "name": "Short - KWsktvSLGJ0",
+          "src": "assets/music/original-2.wav",
+          "from": 0,
+          "duration": 189,
+          "volume": 0.12,
+          "role": "music",
+          "fadeIn": 6,
+          "fadeOut": 8,
+          "note": "Trilha original; ganho reduzido após medir competição com a voz. Entrada acompanha a frase, fade evita salto."
+        },
+        {
+          "id": "musica-1",
+          "name": "Short - 6-nPoPM8LWI",
+          "src": "assets/music/original-1.wav",
+          "from": 186,
+          "duration": 75,
+          "volume": 0.18,
+          "role": "music",
+          "fadeIn": 6,
+          "fadeOut": 15,
+          "note": "Trilha original; ganho reduzido após medir competição com a voz. Entrada acompanha a frase, fade evita salto."
+        }
+      ]
+    },
+    {
+      "id": "sfx",
+      "name": "Efeitos sonoros sincronizados",
+      "kind": "audio",
+      "clips": []
+    }
+  ],
+  "markers": [
+    {
+      "id": "corte-1",
+      "frame": 0,
+      "label": "Tomada 1",
+      "kind": "section"
+    },
+    {
+      "id": "corte-2",
+      "frame": 47,
+      "label": "Tomada 2",
+      "kind": "section"
+    },
+    {
+      "id": "corte-3",
+      "frame": 78,
+      "label": "Tomada 3",
+      "kind": "section"
+    }
+  ]
+}

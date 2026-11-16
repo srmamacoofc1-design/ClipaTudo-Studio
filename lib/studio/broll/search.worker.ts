@@ -1,0 +1,226 @@
+/// <reference lib="webworker" />
+// Archival b-roll search in the browser: the catalog (shots.json + int8 SigLIP image vectors) comes from
+// the CDN, the SigLIP text model from Hugging Face (cached by the browser). Keyword matching over the
+// shot descriptions works at once; ranking by meaning joins when the model has loaded.
+import { AutoTokenizer, SiglipTextModel, type PreTrainedModel, type PreTrainedTokenizer } from "@huggingface/transformers";
+import type { BrollIndex, BrollQuery, BrollResult, BrollShot } from "@/lib/broll";
+
+const TEXT_MODEL = "Xenova/siglip-base-patch16-224";
+// Image–text similarity sits around 0.0–0.2; a keyword hit is a strong extra signal.
+const KEYWORD_BONUS = 0.02;
+const CALM_MOTION = 6;
+// Below this (similarity + keyword bonus) a shot doesn't really show the query: real matches score
+// 0.10–0.20, the rest of the catalog sits around 0.04–0.08.
+const MIN_SCORE = 0.09;
+// When nothing clears it, show this many nearest shots, marked as such.
+const CLOSEST = 12;
+
+const scope = self as unknown as DedicatedWorkerGlobalScope;
+
+interface Catalog {
+  base: string;
+  index: BrollIndex;
+  words: Set<string>[];
+}
+
+const words = (text: string) => text.toLowerCase().match(/[a-z0-9]+/g) ?? [];
+
+let catalog: Promise<Catalog> | null = null;
+
+function getCatalog(base: string) {
+  if (!catalog) {
+    catalog = (async () => {
+      const index = await fetch(`${base}/shots.json`).then((r) => {
+        if (!r.ok) throw new Error(`b-roll catalog: HTTP ${r.status}`);
+        return r.json() as Promise<BrollIndex>;
+      });
+      return {
+        base,
+        index,
+        words: index.shots.map((s) => new Set(words([s.description, s.setting, ...s.subjects, ...s.mood, ...s.tags].join(" ")))),
+      };
+    })();
+    catalog.catch(() => {
+      catalog = null;
+    });
+  }
+  return catalog;
+}
+
+// Only a search by meaning needs the vectors (about 18 MB): load them then, not for the first page.
+let vectorsFile: Promise<Int8Array> | null = null;
+
+function getVectors(base: string, index: BrollIndex) {
+  // The published index names its own vectors file, so the pair always matches.
+  vectorsFile ??= fetch(`${base}/${index.vectorsFile ?? "vectors.i8"}`).then(async (r) => {
+    if (!r.ok) throw new Error(`b-roll vectors: HTTP ${r.status}`);
+    return new Int8Array(await r.arrayBuffer());
+  });
+  vectorsFile.catch(() => {
+    vectorsFile = null;
+  });
+  return vectorsFile;
+}
+
+// The opening grid: the first shots of the browse order (see scripts/broll-index/sync.mjs), a tiny file
+// that shows results at once. The full catalog (about 30 MB of JSON) waits for a search or a filter.
+let browseFile: Promise<{ total: number; matches: number; shots: BrollShot[] } | null> | null = null;
+
+async function browsePage(base: string, offset: number, limit: number) {
+  browseFile ??= fetch(`${base}/browse.json`)
+    .then((r) => (r.ok ? r.json() : null))
+    .catch(() => null);
+  const browse = await browseFile;
+  if (!browse || offset + limit > browse.shots.length) return null;
+  return {
+    total: browse.total,
+    matches: browse.matches,
+    offset,
+    mode: "browse" as const,
+    closest: false,
+    results: browse.shots.slice(offset, offset + limit).map((shot) => ({ ...shot, score: 0 })),
+  };
+}
+
+let model: Promise<{ tokenizer: PreTrainedTokenizer; model: PreTrainedModel }> | null = null;
+let modelReady = false;
+
+function getModel() {
+  model ??= (async () => {
+    const progress = (info: { status?: string; file?: string; progress?: number }) => {
+      if (info.status === "progress") scope.postMessage({ type: "progress", file: info.file, progress: info.progress });
+    };
+    // q8 on the CPU (WASM): one short text per search, so WebGPU wouldn't pay for its bigger download.
+    const [tokenizer, text] = await Promise.all([
+      AutoTokenizer.from_pretrained(TEXT_MODEL, { progress_callback: progress }),
+      SiglipTextModel.from_pretrained(TEXT_MODEL, { device: "wasm", dtype: "q8", progress_callback: progress } as never),
+    ]);
+    modelReady = true;
+    scope.postMessage({ type: "ready" });
+    return { tokenizer, model: text };
+  })();
+  model.catch(() => {
+    model = null;
+  });
+  return model;
+}
+
+async function embed(text: string) {
+  const { tokenizer, model: text_model } = await getModel();
+  // SigLIP was trained with max_length padding.
+  const inputs = tokenizer([`a film still of ${text}`], { padding: "max_length", truncation: true });
+  const { pooler_output } = (await text_model(inputs)) as { pooler_output: { data: ArrayLike<number> } };
+  const v = Float32Array.from(pooler_output.data);
+  let norm = 0;
+  for (const x of v) norm += x * x;
+  norm = Math.sqrt(norm) || 1;
+  for (let i = 0; i < v.length; i++) v[i] /= norm;
+  return v;
+}
+
+// How many of the newest shots lead the browse order, and how many any one film may give them, so a new
+// archive film can't fill the first rows.
+const LATEST_SHOTS = 96;
+const LATEST_PER_FILM = 2;
+
+function browseHash(id: string) {
+  let h = 2166136261;
+  for (let i = 0; i < id.length; i++) h = Math.imul(h ^ id.charCodeAt(i), 16777619);
+  // Avalanche (murmur3 finalizer): ids differing only in the last digits land far apart.
+  h = Math.imul(h ^ (h >>> 16), 0x85ebca6b);
+  h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35);
+  return (h ^ (h >>> 16)) >>> 0;
+}
+
+/** Shots in catalog order (the build appends new films at the end) → newest films first, then the shuffle. */
+function browseOrder<T extends BrollShot>(shots: T[]) {
+  const browsable = shots.filter((s) => !s.titleCard && s.brightness >= 35);
+  const byFilm = new Map<string, T[]>();
+  for (const shot of browsable) byFilm.set(shot.film.id, [...(byFilm.get(shot.film.id) ?? []), shot]);
+  const latest: T[] = [];
+  for (const film of [...byFilm.keys()].reverse()) {
+    if (latest.length >= LATEST_SHOTS) break;
+    const picks = [...byFilm.get(film)!].sort((a, b) => browseHash(a.id) - browseHash(b.id));
+    latest.push(...picks.slice(0, Math.min(LATEST_PER_FILM, LATEST_SHOTS - latest.length)));
+  }
+  const first = new Set(latest);
+  const rest = browsable.filter((s) => !first.has(s)).sort((a, b) => browseHash(a.id) - browseHash(b.id));
+  return [...latest, ...rest];
+}
+
+async function search(base: string, q: BrollQuery & { wait?: boolean }) {
+  const text = (q.query ?? "").trim().slice(0, 300);
+  const offset = Math.max(0, q.offset ?? 0);
+  const limit = Math.min(60, Math.max(1, q.limit ?? 24));
+  if (!text && !q.color && !q.backgroundOk && !q.noPeople && !q.calm && !q.minSeconds) {
+    const page = await browsePage(base, offset, limit);
+    if (page) return page;
+  }
+  const { index, words: shotWords } = await getCatalog(base);
+  // Without `wait`, answer with keywords now and load the model for the next search.
+  let query: Float32Array | null = null;
+  if (text) {
+    if (q.wait || modelReady) query = await embed(text);
+    else void getModel().catch(() => undefined);
+  }
+  const vectors = query ? await getVectors(base, index) : null;
+  const terms = words(text).filter((w) => w.length > 2);
+  const { dim, vectorScale } = index;
+  const results: BrollResult[] = [];
+  for (const [i, shot] of index.shots.entries()) {
+    if (q.color && shot.color !== q.color) continue;
+    if (q.backgroundOk && !shot.backgroundOk) continue;
+    if (q.noPeople && shot.people !== "none") continue;
+    if (q.calm && shot.motion > CALM_MOTION) continue;
+    if (q.minSeconds && shot.seconds < q.minSeconds) continue;
+    let similarity = 0;
+    if (query && vectors) {
+      const row = i * dim;
+      for (let k = 0; k < dim; k++) similarity += query[k] * vectors[row + k];
+      similarity *= vectorScale;
+    }
+    const hits = terms.reduce((n, t) => n + Number(shotWords[i].has(t)), 0);
+    if (text && !query && hits === 0) continue;
+    results.push({ ...shot, score: +(similarity + hits * KEYWORD_BONUS).toFixed(4) });
+  }
+  let closest = false;
+  if (text) {
+    results.sort((a, b) => b.score - a.score);
+    if (query) {
+      const strong = results.filter((r) => r.score >= MIN_SCORE);
+      closest = strong.length === 0;
+      results.splice(0, results.length, ...(closest ? results.slice(0, CLOSEST) : strong));
+    }
+  }
+  // No query: the latest additions first, then a stable shuffle across every film, without title cards
+  // and near-black frames. Keep in sync with browseOrder in scripts/broll-index/sync.mjs (browse.json).
+  else results.splice(0, results.length, ...browseOrder(results));
+  return {
+    total: index.count,
+    matches: results.length,
+    offset,
+    mode: query ? "meaning" : text ? "keywords" : "browse",
+    /** Nothing really matched: these are only the nearest shots. */
+    closest,
+    results: results.slice(offset, offset + limit),
+  };
+}
+
+async function shots(base: string, ids: string[]) {
+  const { index } = await getCatalog(base);
+  const byId = new Map(index.shots.map((s) => [s.id, s]));
+  return ids.map((id) => byId.get(id) ?? null) as (BrollShot | null)[];
+}
+
+scope.addEventListener("message", async (event: MessageEvent) => {
+  const { id, type, base, payload } = event.data as { id: number; type: string; base: string; payload: unknown };
+  try {
+    let result: unknown;
+    if (type === "search") result = await search(base, payload as BrollQuery & { wait?: boolean });
+    else if (type === "shots") result = await shots(base, payload as string[]);
+    else throw new Error(`Unknown request ${type}`);
+    scope.postMessage({ type: "result", id, result });
+  } catch (error) {
+    scope.postMessage({ type: "error", id, error: error instanceof Error ? error.message : String(error) });
+  }
+});

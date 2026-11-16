@@ -1,0 +1,692 @@
+{
+  "version": 1,
+  "tracks": [
+    {
+      "id": "legendas",
+      "name": "Legendas · uma palavra por vez",
+      "kind": "scene",
+      "clips": [
+        {
+          "id": "legenda-01",
+          "name": "CÊS",
+          "from": 4,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "CÊS",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-02",
+          "name": "ESTÃO",
+          "from": 10,
+          "duration": 10,
+          "scene": "StyledText",
+          "props": {
+            "text": "ESTÃO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-03",
+          "name": "NA",
+          "from": 20,
+          "duration": 4,
+          "scene": "StyledText",
+          "props": {
+            "text": "NA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-04",
+          "name": "MERDA",
+          "from": 24,
+          "duration": 11,
+          "scene": "StyledText",
+          "props": {
+            "text": "MERDA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-05",
+          "name": "NO",
+          "from": 35,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "NO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-06",
+          "name": "BRASIL",
+          "from": 40,
+          "duration": 12,
+          "scene": "StyledText",
+          "props": {
+            "text": "BRASIL",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-07",
+          "name": "CÊS",
+          "from": 52,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "CÊS",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-08",
+          "name": "VÃO",
+          "from": 58,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "VÃO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-09",
+          "name": "PRO",
+          "from": 78,
+          "duration": 8,
+          "scene": "StyledText",
+          "props": {
+            "text": "PRO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-10",
+          "name": "ESTADOS",
+          "from": 86,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "ESTADOS",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-11",
+          "name": "UNIDOS",
+          "from": 92,
+          "duration": 12,
+          "scene": "StyledText",
+          "props": {
+            "text": "UNIDOS",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-12",
+          "name": "CÊ",
+          "from": 104,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "CÊ",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-13",
+          "name": "VAI",
+          "from": 109,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "VAI",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-14",
+          "name": "CONTINUAR",
+          "from": 114,
+          "duration": 10,
+          "scene": "StyledText",
+          "props": {
+            "text": "CONTINUAR",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-15",
+          "name": "NA",
+          "from": 124,
+          "duration": 3,
+          "scene": "StyledText",
+          "props": {
+            "text": "NA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-16",
+          "name": "MERDA",
+          "from": 127,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "MERDA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-17",
+          "name": "NÃO",
+          "from": 150,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "NÃO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-18",
+          "name": "ADIANTA",
+          "from": 156,
+          "duration": 10,
+          "scene": "StyledText",
+          "props": {
+            "text": "ADIANTA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-19",
+          "name": "CÊ",
+          "from": 166,
+          "duration": 6,
+          "scene": "StyledText",
+          "props": {
+            "text": "CÊ",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-20",
+          "name": "TIRAR",
+          "from": 172,
+          "duration": 8,
+          "scene": "StyledText",
+          "props": {
+            "text": "TIRAR",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-21",
+          "name": "FOTO",
+          "from": 180,
+          "duration": 8,
+          "scene": "StyledText",
+          "props": {
+            "text": "FOTO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-22",
+          "name": "DA",
+          "from": 188,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "DA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-23",
+          "name": "CASINHA",
+          "from": 193,
+          "duration": 13,
+          "scene": "StyledText",
+          "props": {
+            "text": "CASINHA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-24",
+          "name": "BONITINHA",
+          "from": 206,
+          "duration": 13,
+          "scene": "StyledText",
+          "props": {
+            "text": "BONITINHA",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-25",
+          "name": "AH",
+          "from": 224,
+          "duration": 7,
+          "scene": "StyledText",
+          "props": {
+            "text": "AH",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-26",
+          "name": "MEU",
+          "from": 231,
+          "duration": 5,
+          "scene": "StyledText",
+          "props": {
+            "text": "MEU",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-27",
+          "name": "CARRO",
+          "from": 236,
+          "duration": 12,
+          "scene": "StyledText",
+          "props": {
+            "text": "CARRO",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        },
+        {
+          "id": "legenda-28",
+          "name": "QUALQUER",
+          "from": 258,
+          "duration": 3,
+          "scene": "StyledText",
+          "props": {
+            "text": "QUALQUER",
+            "y": 0.8204761904761906,
+            "size": 80,
+            "color": "#f0ff00",
+            "font": "ClipaLegenda",
+            "stroke": 4,
+            "pop": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "titulos",
+      "name": "Títulos editáveis · fonte original",
+      "kind": "scene",
+      "clips": [
+        {
+          "id": "titulo-1",
+          "name": "Título amarelo",
+          "from": 0,
+          "duration": 261,
+          "scene": "StyledText",
+          "props": {
+            "text": "VINHETEIRO SE SOLTOU",
+            "y": 0.3115800865800866,
+            "size": 68,
+            "color": "#f0ff00",
+            "font": "ClipaTituloV",
+            "stroke": 9
+          }
+        },
+        {
+          "id": "titulo-2",
+          "name": "Título branco",
+          "from": 0,
+          "duration": 261,
+          "scene": "StyledText",
+          "props": {
+            "text": "E TODO MUNDO RIU!",
+            "y": 0.3576839826839827,
+            "size": 79,
+            "color": "#ffffff",
+            "font": "ClipaTitulo",
+            "stroke": 9
+          }
+        }
+      ]
+    },
+    {
+      "id": "banner",
+      "name": "Seu banner original · PNG transparente",
+      "kind": "image",
+      "clips": [
+        {
+          "id": "banner-original",
+          "src": "assets/images/banner-original.png",
+          "from": 0,
+          "duration": 261,
+          "box": {
+            "x": 0,
+            "y": -0.058,
+            "width": 1,
+            "height": 1
+          },
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "arte",
+      "name": "Arte superior original",
+      "kind": "image",
+      "clips": [
+        {
+          "id": "arte-original",
+          "src": "assets/images/arte-original.png",
+          "from": 0,
+          "duration": 261,
+          "box": {
+            "x": -0.047348904728287566,
+            "y": -0.027045608363998802,
+            "width": 1.0946978094565751,
+            "height": 0.3461850877692369
+          },
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "video",
+      "name": "Vídeo · cortes e enquadramentos",
+      "kind": "video",
+      "clips": [
+        {
+          "id": "video-1",
+          "name": "Tomada 1",
+          "src": "assets/video/fonte-01.mp4",
+          "duration": 47,
+          "trimStart": 52,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": -2.1817806462319034,
+            "y": 0.2863897871693306,
+            "width": 3.4367320241711243,
+            "height": 1.0874034920228948
+          },
+          "note": "Enquadramento do CapCut; fonte 1.733s.",
+          "from": 0
+        },
+        {
+          "id": "video-2",
+          "name": "Tomada 2",
+          "src": "assets/video/fonte-01.mp4",
+          "duration": 31,
+          "trimStart": 99,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": -3.2049400578751546,
+            "y": 0.22955209865696835,
+            "width": 5.0,
+            "height": 1.58203125
+          },
+          "note": "Enquadramento do CapCut; fonte 3.300s.",
+          "from": 47
+        },
+        {
+          "id": "video-3",
+          "name": "Tomada 3",
+          "src": "assets/video/fonte-01.mp4",
+          "duration": 183,
+          "trimStart": 130,
+          "muted": true,
+          "fit": "contain",
+          "box": {
+            "x": -2.3972278007034484,
+            "y": 0.264650656734548,
+            "width": 3.4367320241711243,
+            "height": 1.0874034920228948
+          },
+          "note": "Enquadramento do CapCut; fonte 4.333s.",
+          "from": 78
+        }
+      ]
+    },
+    {
+      "id": "fala",
+      "name": "Fala original · cortes separados",
+      "kind": "audio",
+      "clips": [
+        {
+          "id": "fala-1",
+          "name": "Fala · tomada 1",
+          "src": "assets/voice/fala-01.wav",
+          "from": 0,
+          "duration": 47,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 1,
+          "fadeOut": 1
+        },
+        {
+          "id": "fala-2",
+          "name": "Fala · tomada 2",
+          "src": "assets/voice/fala-02.wav",
+          "from": 47,
+          "duration": 31,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 1,
+          "fadeOut": 1
+        },
+        {
+          "id": "fala-3",
+          "name": "Fala · tomada 3",
+          "src": "assets/voice/fala-03.wav",
+          "from": 78,
+          "duration": 183,
+          "role": "voice",
+          "volume": 1,
+          "fadeIn": 1,
+          "fadeOut": 1
+        }
+      ]
+    },
+    {
+      "id": "musica",
+      "name": "Música original",
+      "kind": "audio",
+      "clips": [
+        {
+          "id": "musica-2",
+          "name": "Short - KWsktvSLGJ0",
+          "src": "assets/music/original-2.wav",
+          "from": 0,
+          "duration": 189,
+          "volume": 0.12,
+          "role": "music",
+          "fadeIn": 6,
+          "fadeOut": 8,
+          "note": "Trilha original; ganho reduzido após medir competição com a voz. Entrada acompanha a frase, fade evita salto."
+        },
+        {
+          "id": "musica-1",
+          "name": "Short - 6-nPoPM8LWI",
+          "src": "assets/music/original-1.wav",
+          "from": 186,
+          "duration": 75,
+          "volume": 0.18,
+          "role": "music",
+          "fadeIn": 6,
+          "fadeOut": 15,
+          "note": "Trilha original; ganho reduzido após medir competição com a voz. Entrada acompanha a frase, fade evita salto."
+        }
+      ]
+    },
+    {
+      "id": "sfx",
+      "name": "Efeitos sonoros sincronizados",
+      "kind": "audio",
+      "clips": []
+    }
+  ],
+  "markers": [
+    {
+      "id": "corte-1",
+      "frame": 0,
+      "label": "Tomada 1",
+      "kind": "section"
+    },
+    {
+      "id": "corte-2",
+      "frame": 47,
+      "label": "Tomada 2",
+      "kind": "section"
+    },
+    {
+      "id": "corte-3",
+      "frame": 78,
+      "label": "Tomada 3",
+      "kind": "section"
+    }
+  ]
+}
