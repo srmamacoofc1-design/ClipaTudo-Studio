@@ -2,7 +2,7 @@
  * Smoke test da timeline nativa Toguro, em ambiente isolado do GitHub Actions.
  * Não modifica o projeto original e NÃO cria edição de um vídeo novo.
  */
-import { existsSync, mkdirSync, cpSync, rmSync, writeFileSync, copyFileSync } from "node:fs";
+import { existsSync, mkdirSync, cpSync, rmSync, writeFileSync, copyFileSync, readFileSync } from "node:fs";
 import { resolve, join } from "node:path";
 import { scaffoldWorkspace } from "../packages/agentcut/src/studio/workspace.ts";
 import { readProjectState, projectDir } from "../packages/agentcut/src/studio/projects.ts";
@@ -24,7 +24,7 @@ const status = {
   branch: process.env.GITHUB_REF_NAME ?? "local",
   status: "NOT_RUN",
   output: null,
-  notes: "A renderização da timeline original é um teste técnico, não aprovação estética."
+  notes: "Variante diagnóstica SEM a imagem congelada, feita somente na cópia do projeto; ainda não corrige o enquadramento da virada de câmera nem representa aprovação estética."
 };
 function save() { writeFileSync(statusPath, JSON.stringify(status, null, 2)+"\n"); }
 save();
@@ -35,6 +35,17 @@ try {
   // Cópia isolada: nunca reescreva o original da Release.
   rmSync(testProject, { recursive: true, force: true });
   cpSync(original, testProject, { recursive: true });
+  // Substitui o congelamento SOMENTE na cópia experimental; o vídeo original da tomada 3 continua em movimento.
+  const layersPath = join(testProject, "layers.json");
+  const editedLayers = JSON.parse(readFileSync(layersPath, "utf8"));
+  const still = editedLayers.tracks.find(track=>track.id==="apoios-estaveis");
+  if (!still || !still.clips?.some(clip=>clip.id==="apoio-torso" && clip.from===171 && clip.duration===96)) {
+    throw new Error("A imagem congelada esperada não foi localizada: não alterar a timeline sem correspondência.");
+  }
+  still.clips = still.clips.filter(clip=>clip.id!=="apoio-torso");
+  editedLayers.tracks = editedLayers.tracks.filter(track=>track.clips.length>0);
+  writeFileSync(layersPath, JSON.stringify(editedLayers,null,2)+"\n");
+  status.removedStill = {id:"apoio-torso", fromFrame:171, durationFrames:96, modifiedCopyOnly:true};
   const { paths } = scaffoldWorkspace(base);
   const state = readProjectState(paths,slug);
   const severe = state.issues.filter((issue)=>issue.severity==="error");
@@ -60,9 +71,9 @@ try {
     layers: state.layers,
     onProgress: ({stage,progress,message}) => console.log(String(stage), progress ?? "", message ?? "")
   });
-  const target = join(artifactDir,"Toguro-previa-original-720p.mp4");
+  const target = join(artifactDir,"Toguro-teste-sem-congelamento-720p.mp4");
   copyFileSync(result.absolutePath,target);
-  status.output = "Toguro-previa-original-720p.mp4";
+  status.output = "Toguro-teste-sem-congelamento-720p.mp4";
   status.status = "RENDERED_UNREVIEWED";
   status.renderDurationMs = result.renderDurationMs;
   save();
