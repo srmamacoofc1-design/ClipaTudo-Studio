@@ -12,11 +12,11 @@ import {buildRenderEntrySource} from "../packages/agentcut/src/studio/bundler.ts
 import {runLocalRender} from "../packages/agentcut/src/studio/render.ts";
 const id=process.argv[2];
 const EDITS={
- "toguro-055":{title1:"TOGURO REVELA",title2:"CONTRATOS PERDIDOS",start:0,seconds:35},
+ "toguro-055":{title1:"TOGURO REVELA",title2:"CONTRATOS PERDIDOS",start:3,seconds:35},
  "toguro-034":{title1:"DESAFIO DAS CLARAS",title2:"A REAÇÃO SURPREENDE",start:11,seconds:35},
- "toguro-044":{title1:"TOGURO CONFUNDIU",title2:"A OFERTA COM FLERTE",start:6,seconds:35},
- "toguro-024":{title1:"TOGURO DESAFIA",title2:"QUEM CRITICA O SHAPE",start:5,seconds:35},
- "toguro-066":{title1:"MILHÕES DE SEGUIDORES",title2:"NÃO IMPRESSIONAM?",start:2,seconds:35},
+ "toguro-044":{title1:"TOGURO CONFUNDIU",title2:"A OFERTA COM FLERTE",start:4.5,seconds:35},
+ "toguro-024":{title1:"TOGURO DESAFIA",title2:"QUEM CRITICA O SHAPE",start:10,seconds:35},
+ "toguro-066":{title1:"MILHÕES DE SEGUIDORES",title2:"NÃO IMPRESSIONAM?",start:4.5,seconds:35},
 };
 const edit=EDITS[id];
 if(!edit)throw Error("Unknown edit "+id);
