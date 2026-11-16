@@ -2,9 +2,22 @@
 """Source-time face-center sampling for native Agentcut crop paths.
 No frames are frozen, synthesized or substituted. Missing detections are explicit.
 """
-import cv2, json, sys, pathlib
+import json, sys, pathlib, subprocess
 file=pathlib.Path(sys.argv[1])
 output=pathlib.Path(sys.argv[2])
+try:
+    import cv2
+    if not hasattr(cv2, "CascadeClassifier") or not hasattr(cv2, "VideoCapture"):
+        raise ImportError("Installed cv2 lacks detector/decoder implementations")
+except Exception as error:
+    # The video always stays moving. This fallback makes no face-tracking claim.
+    probe=subprocess.run(["ffprobe","-v","error","-show_entries","format=duration","-of","default=noprint_wrappers=1:nokey=1",str(file)],capture_output=True,text=True,check=True)
+    duration=float(probe.stdout.strip())
+    out=[{"seconds":round(min(duration-.01, i*.3),4),"centerX":.5,"confidence":0} for i in range(int(duration/.3)+1)]
+    output.parent.mkdir(parents=True,exist_ok=True)
+    output.write_text(json.dumps(out,indent=2))
+    print("FACE_DETECTOR_UNAVAILABLE: original video remains moving, crop center fallback:",str(error))
+    sys.exit(0)
 cap=cv2.VideoCapture(str(file))
 if not cap.isOpened(): raise RuntimeError("Cannot decode source "+str(file))
 fps=cap.get(cv2.CAP_PROP_FPS)
