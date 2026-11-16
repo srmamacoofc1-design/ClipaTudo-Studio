@@ -29,6 +29,14 @@ for id,fn in ITEMS:
          "-vn","-ac","1","-ar","16000","-c:a","pcm_s16le",str(ROOT/f"{id}.wav")])
 (OUT/"selection.json").write_text(json.dumps(meta,indent=2,ensure_ascii=False))
 try:
+    # Compatibility patch: recent PyAV builds reject the optional metadata_errors kwarg
+    # used by faster-whisper's audio loader. FFmpeg has already decoded the WAV.
+    import av
+    _av_open = av.open
+    def _compatible_av_open(*args, **kwargs):
+        kwargs.pop("metadata_errors", None)
+        return _av_open(*args, **kwargs)
+    av.open = _compatible_av_open
     from faster_whisper import WhisperModel
     model=WhisperModel("base",device="cpu",compute_type="int8",cpu_threads=4)
     for id,fn in ITEMS:
