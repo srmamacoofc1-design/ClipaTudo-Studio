@@ -13,6 +13,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### ClipaTudo — raw source clips
+
+- Published a user-limited selection of 126 source clips from the owner's CapCut media bank, explicitly labelled as raw excerpts awaiting Agentcut editing, with individual downloads and SHA-256 metadata.
+
 ### ClipaTudo — materials for another GPT
 
 - Added direct-download handoff instructions, individual native Toguro/Vinheteiro project bundles and an explicit 10-second raw-source test sample in the current public Release.

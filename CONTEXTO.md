@@ -26,3 +26,7 @@ Filtros e animações proprietários do CapCut não foram importados como plugin
 ## Acesso por outro GPT
 
 Links de download em `clipatudo/PARA-O-GPT.md`. O pacote completo mantém o editor e os dois trabalhos atuais. Os ZIPs individuais contêm apenas um projeto e a receita, com assets necessários; o MP4 bruto é uma amostra de 10 segundos da fonte Toguro já disponível. Todos ficam na mesma Release pública `agentcut-2026-11-16`. O GPT receptor precisa verificar download, dependências e renderização no próprio ambiente. O pacote completo não foi refeito por uma mudança só de documentação; priorizar a memória atual do repositório ao continuar.
+
+## Banco de entrada para novas edições
+
+clipatudo/materiais-brutos/catalogo.json contém somente os **126 MP4s efetivamente publicados**, com duração, resolução, SHA-256 e download individual. O proprietário encerrou o restante do envio por considerar suficiente. A Release de materiais brutos é separada da Release do editor e não altera os dois projetos de referência. Escolher um clipe e montar uma nova edição nativa no Agentcut, preservando a fonte. Não retomar os envios restantes sem pedido.

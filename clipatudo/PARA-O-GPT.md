@@ -4,6 +4,8 @@ Este projeto é o **Agentcut modificado como ClipaTudo**. Trabalhe nesse editor 
 
 ## Downloads públicos
 
+Os clipes cortados para o proprietário e importados no CapCut estão no [catálogo de materiais brutos para editar](materiais-brutos/README.md): 126 arquivos efetivamente publicados, com links individuais e metadados. Esses são materiais de entrada, não edições finalizadas. Escolha um MP4 do catálogo para editar; não confunda a amostra de 10s abaixo com o banco completo.
+
 | Material | Link direto | Tamanho aproximado |
 |---|---|---|
 | Editor completo, projetos e recursos | [ClipaTudo-Agentcut-Completo.zip](https://github.com/srmamacoofc1-design/ClipaTudo-Studio/releases/download/agentcut-2026-11-16/ClipaTudo-Agentcut-Completo.zip) | 159 MB |

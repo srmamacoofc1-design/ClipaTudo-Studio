@@ -24,3 +24,11 @@ Código público: https://github.com/srmamacoofc1-design/ClipaTudo-Studio. Proje
 ## Materiais para outro GPT — 16/11/2026
 
 O proprietário pediu acesso público ao pacote, a um bruto de teste e aos estilos. A página `clipatudo/PARA-O-GPT.md` reúne os links diretos. A Release contém o pacote completo e alternativas individuais dos dois projetos com seus assets/scenes/layers/project. `Toguro-Bruto-Teste-10s.mp4` é uma amostra do material-fonte já disponível, sem as camadas da edição, não um novo vídeo escolhido pelo usuário. Toguro é a sugestão inicial para esse ensaio; não é aprovação final do estilo. Não garantir renderização no ambiente de outro GPT sem execução verificada.
+
+## Banco de materiais brutos solicitado pelo proprietário
+
+O proprietário pediu publicar os clipes cortados para ele que estão importados no CapCut, como fontes para o GPT editar. A biblioteca foi conferida: havia 201 Toguro + 12 Vinheteiro disponíveis. Durante o envio, o proprietário disse “isso já é o suficiente”; os próximos envios foram interrompidos e apenas os já iniciados terminaram.
+
+Resultado publicado: **126 MP4s**, 126 Toguro e 0 Vinheteiro, total de 5467620185 bytes. O catálogo lista somente envios concluídos, todos com tamanho e SHA-256 conferidos no servidor. Não afirmar que todos os 213 foram publicados e não retomar os restantes sem novo pedido.
+
+São **brutos recortados**, já selecionados/extraídos, ainda para edição no Agentcut. Preservar imagem/áudio e eventuais marcas/textos da fonte. Catálogo em clipatudo/materiais-brutos, com links individuais. Release: materiais-brutos-capcut-2026-11-16. O aplicativo continua somente Agentcut como ClipaTudo.

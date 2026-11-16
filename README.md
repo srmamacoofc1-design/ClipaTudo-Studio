@@ -10,6 +10,8 @@ A interface local é http://127.0.0.1:3000/studio. O auxiliar usa 127.0.0.1:3211
 
 Para enviar os materiais a outro GPT, use [os links diretos e o pedido de teste](clipatudo/PARA-O-GPT.md). Há também ZIPs individuais de Toguro/Vinheteiro e um MP4 bruto de 10 segundos do material atual para ensaio.
 
+Os [materiais brutos recortados](clipatudo/materiais-brutos/README.md) contêm 126 clipes publicados do banco importado no CapCut, com download individual para uma nova edição no Agentcut. Eles são fontes de entrada, não vídeos finalizados.
+
 ```powershell
 npm ci
 npm run sync:skill
